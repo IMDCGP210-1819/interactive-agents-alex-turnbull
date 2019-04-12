@@ -1,0 +1,8 @@
+﻿  pch.cpp
+  InteractiveAgents.cpp
+InteractiveAgents.obj : error LNK2019: unresolved external symbol "public: __cdecl sf::String::String(char const *,class std::locale const &)" (??0String@sf@@QEAA@PEBDAEBVlocale@std@@@Z) referenced in function main
+InteractiveAgents.obj : error LNK2019: unresolved external symbol "public: __cdecl sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (??0VideoMode@sf@@QEAA@III@Z) referenced in function main
+InteractiveAgents.obj : error LNK2019: unresolved external symbol "public: __cdecl sf::RenderWindow::RenderWindow(class sf::VideoMode,class sf::String const &,unsigned int,struct sf::ContextSettings const &)" (??0RenderWindow@sf@@QEAA@VVideoMode@1@AEBVString@1@IAEBUContextSettings@1@@Z) referenced in function main
+C:\Users\alext\Documents\Visual Studio 2017\Projects\InteractiveAgents\Libraries\SFML-2.5.1\lib\sfml-graphics.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\alext\Documents\Visual Studio 2017\Projects\InteractiveAgents\Libraries\SFML-2.5.1\lib\sfml-window.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\alext\Documents\Visual Studio 2017\Projects\InteractiveAgents\x64\Debug\InteractiveAgents.exe : fatal error LNK1120: 3 unresolved externals
