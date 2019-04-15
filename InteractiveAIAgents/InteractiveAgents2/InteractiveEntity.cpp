@@ -11,8 +11,3 @@ InteractiveEntity::InteractiveEntity()
 InteractiveEntity::~InteractiveEntity()
 {
 }
-
-void InteractiveEntity::Think()
-{
-
-}
