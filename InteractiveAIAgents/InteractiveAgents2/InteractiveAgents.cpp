@@ -22,8 +22,10 @@ int main()
 		sf::Event event;
 		while (window->pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
-				window->close();
+			if (event.type == Event::Closed)
+			{
+				window->close();			
+			}
 		}
 
 		window->clear();
@@ -32,9 +34,9 @@ int main()
 
 		activeGrid.listOfNodes[2].nodeType = node::start;
 
-		activeGrid.listOfNodes[89].nodeType = node::goal;
+		activeGrid.listOfNodes[300].nodeType = node::goal;		
 
-		entity->think();
+		//entity->think();
 
 		window->display();
 	}

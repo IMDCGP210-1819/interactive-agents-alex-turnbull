@@ -18,8 +18,13 @@ public:
 
 	nodeTypes nodeType;
 
-	float posX;
-	float posY;
+	int rowVal;
+	int colVal;
+
+	node *north;
+	node *south;
+	node *west;
+	node *east;
 
 	sf::RectangleShape cellRef;
 

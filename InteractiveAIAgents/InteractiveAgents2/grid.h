@@ -2,6 +2,7 @@
 #include <sfml/Graphics.hpp>
 #include <iostream>
 #include "node.h"
+#include <algorithm>
 
 using namespace sf;
 
@@ -16,6 +17,7 @@ public:
 	float outlineThickness = 2.0f;
 
 	void draw();
+	void assignNeighbours();
 
 	RenderWindow *currentWindow;
 
