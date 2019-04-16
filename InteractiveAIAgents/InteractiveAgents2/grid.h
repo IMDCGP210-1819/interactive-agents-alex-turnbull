@@ -1,5 +1,7 @@
 #pragma once
 #include <sfml/Graphics.hpp>
+#include <iostream>
+#include "node.h"
 
 using namespace sf;
 
@@ -12,6 +14,12 @@ public:
 	float cellSizes = 50.0f;
 	Color outlineColour = Color::Black;
 	float outlineThickness = 2.0f;
+
+	void draw();
+
+	RenderWindow *currentWindow;
+
+	std::vector<node> listOfNodes;
 
 };
 

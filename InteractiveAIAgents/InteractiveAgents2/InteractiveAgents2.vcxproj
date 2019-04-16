@@ -127,6 +127,7 @@
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="InteractiveAgents.cpp" />
     <ClCompile Include="InteractiveEntity.cpp" />
+    <ClCompile Include="node.cpp" />
     <ClCompile Include="State1.cpp" />
     <ClCompile Include="State2.cpp" />
     <ClCompile Include="StateMachine.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="BaseState.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="InteractiveEntity.h" />
+    <ClInclude Include="node.h" />
     <ClInclude Include="State1.h" />
     <ClInclude Include="State2.h" />
     <ClInclude Include="StateMachine.h" />

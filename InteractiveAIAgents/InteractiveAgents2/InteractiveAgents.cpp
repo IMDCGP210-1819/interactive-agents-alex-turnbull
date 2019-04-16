@@ -15,6 +15,8 @@ int main()
 
 	InteractiveEntity *entity = new InteractiveEntity();
 
+	grid activeGrid = grid(window, 10);
+
 	while (window->isOpen())
 	{
 		sf::Event event;
@@ -26,7 +28,13 @@ int main()
 
 		window->clear();
 
-		grid(window, 10);
+		activeGrid.draw();
+
+		activeGrid.listOfNodes[2].nodeType = node::start;
+
+		activeGrid.listOfNodes[89].nodeType = node::goal;
+
+		entity->think();
 
 		window->display();
 	}
