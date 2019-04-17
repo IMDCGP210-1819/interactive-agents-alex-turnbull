@@ -32,7 +32,10 @@ void node::update()
 	case checked: cellRef.setFillColor(sf::Color::Magenta);
 		break;
 
-	default: cellRef.setFillColor(sf::Color::Black);
+	case obstacle: cellRef.setFillColor(sf::Color::Black);
+		break;
+
+	default: cellRef.setFillColor(sf::Color::Green);
 		break;
 	}
 }

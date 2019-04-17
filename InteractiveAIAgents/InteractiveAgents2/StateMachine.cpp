@@ -3,6 +3,7 @@
 
 StateMachine::StateMachine(InteractiveEntity *entity)
 {
+	//take in the entity to control and give it an initial state
 	interactiveEntity = entity;
 	currentState = new State1(interactiveEntity);
 }

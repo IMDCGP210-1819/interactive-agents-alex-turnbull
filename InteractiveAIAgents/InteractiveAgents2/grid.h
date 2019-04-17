@@ -3,6 +3,7 @@
 #include <iostream>
 #include "node.h"
 #include <algorithm>
+#include <queue>
 
 using namespace sf;
 
@@ -16,12 +17,25 @@ public:
 	Color outlineColour = Color::Black;
 	float outlineThickness = 2.0f;
 
-	void draw();
-	void assignNeighbours();
+	void draw();	
 
 	RenderWindow *currentWindow;
 
 	std::vector<node> listOfNodes;
 
+	node* startNode = nullptr;
+	node* targetNode = nullptr;
+
+	bool PathSet = false;
+
+	void breadthFirst();
+	void breadthFirstCheckNode(node* currentNode);
+	void DrawPath(node* node);
+
+	bool reachedGoal = false;
+	std::vector<node*> currentNodesToCheck = std::vector<node*>();
+
+private:
+	void assignNeighbours();
 };
 
