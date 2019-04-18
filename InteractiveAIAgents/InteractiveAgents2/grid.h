@@ -14,7 +14,7 @@ public:
 	~grid();
 
 	float cellSizes = 50.0f;
-	Color outlineColour = Color::Black;
+	Color outlineColour = Color::Red;
 	float outlineThickness = 2.0f;
 
 	void draw();	
