@@ -30,8 +30,8 @@ grid::grid(RenderWindow *window, int col)
 			cellNode->rowVal = j;
 
 			//for the node, assign the center of the grid cell to be it's respective values
-			cellNode->posX = (grid[i][j].getPosition().x + grid[i][j].getGlobalBounds().width) / 2;
-			cellNode->posY = grid[i][j].getPosition().y + grid[i][j].getGlobalBounds().height / 2;
+			cellNode->posX = grid[i][j].getPosition().x + (grid[i][j].getGlobalBounds().width / 2);
+			cellNode->posY = grid[i][j].getPosition().y + (grid[i][j].getGlobalBounds().height / 2);
 
 			//store a list of all generated nodes
 			listOfNodes.push_back(*cellNode);
@@ -59,6 +59,7 @@ void grid::draw()
 	{
 		listOfNodes[i].update();
 		currentWindow->draw(listOfNodes[i].cellRef);
+		currentWindow->draw(listOfNodes[i].cellSprite);
 	}
 }
 

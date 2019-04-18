@@ -14,7 +14,7 @@ int main()
 
 	sf::Sprite backgroundS;
 	sf::Texture backgoundT;
-	backgoundT.loadFromFile("Assets\\terribleIsland.png");
+	backgoundT.loadFromFile("Assets\\island2.png");
 	backgroundS.setTexture(backgoundT);
 
 	grid activeGrid = grid(window, 10);

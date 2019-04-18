@@ -40,6 +40,11 @@ public:
 
 	sf::RectangleShape cellRef;
 
+	sf::Sprite cellSprite;
+	sf::Texture spotTexture;
+	sf::Texture blankTexture;
+	sf::Texture rockTexture;
+
 	void update();
 };
 
