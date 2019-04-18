@@ -4,6 +4,11 @@
 InteractiveEntity::InteractiveEntity()
 {
 	fsm = new StateMachine(this);
+
+	std::string filename = "Assets\\pirate.png";
+	texture.loadFromFile(filename);
+	entitySprite.setOrigin(17, 17);
+	entitySprite.setTexture(texture);
 }
 
 

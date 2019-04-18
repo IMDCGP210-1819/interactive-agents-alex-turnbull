@@ -11,7 +11,15 @@ public:
 	void think();
 	StateMachine *fsm;
 
-	sf::Clock clock;
+	sf::Sprite entitySprite;
+	sf::Texture texture;
+	sf::Sprite GetSprite() { return entitySprite; }
+
+	sf::Clock internalClock;
+
+	int abituaryValue = 0;
+
+	bool atTarget = false;
 
 };
 

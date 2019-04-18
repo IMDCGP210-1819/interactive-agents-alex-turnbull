@@ -13,12 +13,13 @@ bankState::~bankState()
 void bankState::Enter()
 {
 	std::cout << "-- Entered Bank State --" << std::endl;
-	currentEntity->clock.restart();
+	currentEntity->internalClock.restart();
+	currentEntity->entitySprite.setColor(sf::Color::Yellow);
 }
 
 void bankState::Run()
 {
-	sf::Time elapsed = currentEntity->clock.getElapsedTime();
+	sf::Time elapsed = currentEntity->internalClock.getElapsedTime();
 	std::cout << "Running Bank State for: " << floorf(elapsed.asSeconds() * 100) / 100 << " seconds" << '\r';
 }
 
@@ -29,10 +30,11 @@ void bankState::Exit()
 
 BaseState * bankState::GetNewState()
 {
-	sf::Time elapsed = currentEntity->clock.getElapsedTime();
+	sf::Time elapsed = currentEntity->internalClock.getElapsedTime();
 
-	if (elapsed.asSeconds() > 5.0f)
+	if (elapsed.asSeconds() > 3.0f)
 	{
+		currentEntity->abituaryValue = 0;
 		return new moveState(currentEntity);
 	}
 	return nullptr;

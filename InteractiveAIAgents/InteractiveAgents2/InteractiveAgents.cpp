@@ -12,8 +12,16 @@ int main()
 
 	InteractiveEntity *entity = new InteractiveEntity();
 
+	sf::Sprite backgroundS;
+	sf::Texture backgoundT;
+	backgoundT.loadFromFile("Assets\\terribleIsland.png");
+	backgroundS.setTexture(backgoundT);
+
 	grid activeGrid = grid(window, 10);
 	//activeGrid.startNode = &activeGrid.listOfNodes[10];
+
+	//entity->entitySprite.setPosition(activeGrid.startNode->posX, activeGrid.startNode->posY);
+	entity->entitySprite.setPosition(500, 500);
 
 	activeGrid.listOfNodes[300].nodeType = node::goal;
 
@@ -49,11 +57,12 @@ int main()
 	activeGrid.listOfNodes[294].nodeType = node::obstacle;
 	activeGrid.listOfNodes[310].nodeType = node::obstacle;
 	activeGrid.listOfNodes[326].nodeType = node::obstacle;
-	/*activeGrid.listOfNodes[326 + 16].nodeType = node::obstacle;
+
+	activeGrid.listOfNodes[326 + 16].nodeType = node::obstacle;
 	activeGrid.listOfNodes[326 + 16 + 16].nodeType = node::obstacle;
 	activeGrid.listOfNodes[326 + 16 + 16 + 16].nodeType = node::obstacle;
 
-	activeGrid.listOfNodes[215].nodeType = node::obstacle;
+	/*activeGrid.listOfNodes[215].nodeType = node::obstacle;
 	activeGrid.listOfNodes[216].nodeType = node::obstacle;
 	activeGrid.listOfNodes[217].nodeType = node::obstacle;
 	activeGrid.listOfNodes[218].nodeType = node::obstacle;
@@ -88,13 +97,16 @@ int main()
 			}
 		}
 
-		window->clear();
-
-		activeGrid.draw();
+		window->clear();		
 
 		activeGrid.breadthFirst();
 
 		entity->think();
+
+		//drawing of elements
+		window->draw(backgroundS);		
+		activeGrid.draw();
+		window->draw(entity->GetSprite());
 
 		window->display();
 	}

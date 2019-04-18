@@ -15,12 +15,13 @@ digState::~digState()
 void digState::Enter()
 {
 	std::cout << "-- Entered Dig State --" << std::endl;
-	currentEntity->clock.restart();
+	currentEntity->internalClock.restart();
+	currentEntity->entitySprite.setColor(sf::Color(73, 30, 0));
 }
 
 void digState::Run()
 {
-	sf::Time elapsed = currentEntity->clock.getElapsedTime();
+	sf::Time elapsed = currentEntity->internalClock.getElapsedTime();
 	std::cout << "Running Dig State for: " << floorf(elapsed.asSeconds() * 100) / 100 << " seconds" << '\r';
 }
 
@@ -31,11 +32,12 @@ void digState::Exit()
 
 BaseState * digState::GetNewState()
 {
-	sf::Time elapsed = currentEntity->clock.getElapsedTime();
+	sf::Time elapsed = currentEntity->internalClock.getElapsedTime();
 
-	if (elapsed.asSeconds() > 5.0f)
+	if (elapsed.asSeconds() > 2.0f)
 	{
-		return new bankState(currentEntity);
+		currentEntity->abituaryValue += 1;
+		return new moveState(currentEntity);
 	}
 	return nullptr;
 }
