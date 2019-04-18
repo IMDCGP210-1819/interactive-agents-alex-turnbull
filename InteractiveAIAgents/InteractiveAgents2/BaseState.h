@@ -4,6 +4,8 @@
 
 #include "InteractiveEntity.h"
 
+#include <math.h>
+
 class BaseState
 {
 public:

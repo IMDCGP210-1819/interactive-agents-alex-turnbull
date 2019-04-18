@@ -73,7 +73,7 @@ int main()
 
 	window->setFramerateLimit(10);
 
-	std::cout << "Start Node: Row: " << activeGrid.startNode->rowVal << " Col: " << activeGrid.startNode->colVal << std::endl;
+	//std::cout << "Start Node: Row: " << activeGrid.startNode->rowVal << " Col: " << activeGrid.startNode->colVal << std::endl;
 
 	//main loop for the program
 	while (window->isOpen())
@@ -94,7 +94,7 @@ int main()
 
 		activeGrid.breadthFirst();
 
-		//entity->think();
+		entity->think();
 
 		window->display();
 	}

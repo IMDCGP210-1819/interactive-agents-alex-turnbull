@@ -5,7 +5,8 @@ StateMachine::StateMachine(InteractiveEntity *entity)
 {
 	//take in the entity to control and give it an initial state
 	interactiveEntity = entity;
-	currentState = new State1(interactiveEntity);
+	currentState = new moveState(interactiveEntity);
+	currentState->Enter();
 }
 
 
@@ -21,11 +22,18 @@ void StateMachine::Update()
 
 void StateMachine::ChangeState(BaseState * newState)
 {
-	if (newState == nullptr) { return; }
+	if (newState == nullptr)
+	{ 
+		return;
+	}
 
 	currentState->Exit();
 
 	BaseState* oldState = currentState;
+
 	currentState = newState;
-	delete oldState; // deletes the previous current state in order to save memory.
+	currentState->Enter();
+
+	//delete the previous state to clean up memory
+	delete oldState; 
 }

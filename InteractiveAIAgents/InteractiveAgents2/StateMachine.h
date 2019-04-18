@@ -2,8 +2,9 @@
 #include "InteractiveEntity.h"
 #include "BaseState.h"
 //include States
-#include "State1.h"
-#include "State2.h"
+#include "moveState.h"
+#include "digState.h"
+#include "bankState.h"
 
 class InteractiveEntity;
 class BaseState;

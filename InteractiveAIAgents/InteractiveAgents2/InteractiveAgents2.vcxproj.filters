@@ -24,16 +24,19 @@
     <ClCompile Include="InteractiveEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="State1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="State2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="grid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="moveState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="digState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bankState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,16 +50,19 @@
     <ClInclude Include="InteractiveEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="State1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="grid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="moveState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="digState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bankState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

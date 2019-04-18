@@ -10,5 +10,8 @@ public:
 	
 	void think();
 	StateMachine *fsm;
+
+	sf::Clock clock;
+
 };
 

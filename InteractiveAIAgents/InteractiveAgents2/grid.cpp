@@ -76,12 +76,6 @@ void grid::assignNeighbours()
 				listOfNodes[i].neighbours.push_back(listOfNodes[i].north = &listOfNodes[j]);
 			}
 
-			//find west neighbour by looking for the node with the same row value but 1 less column value
-			if (listOfNodes[j].rowVal == listOfNodes[i].rowVal && listOfNodes[j].colVal == listOfNodes[i].colVal - 1)
-			{
-				listOfNodes[i].neighbours.push_back(listOfNodes[i].west = &listOfNodes[j]);
-			}
-
 			//find east neighbour by looking for the node with the same row value but +1 column value
 			if (listOfNodes[j].rowVal == listOfNodes[i].rowVal + 1 && listOfNodes[j].colVal == listOfNodes[i].colVal + 1)
 			{
@@ -92,7 +86,13 @@ void grid::assignNeighbours()
 			if (listOfNodes[j].rowVal == listOfNodes[i].rowVal + 1 && listOfNodes[j].colVal == listOfNodes[i].colVal)
 			{
 				listOfNodes[i].neighbours.push_back(listOfNodes[i].south = &listOfNodes[j]);
-			}		
+			}
+
+			//find west neighbour by looking for the node with the same row value but 1 less column value
+			if (listOfNodes[j].rowVal == listOfNodes[i].rowVal && listOfNodes[j].colVal == listOfNodes[i].colVal - 1)
+			{
+				listOfNodes[i].neighbours.push_back(listOfNodes[i].west = &listOfNodes[j]);
+			}				
 
 			//once neighbour has been found it is assigned respectively into it's own pointer for the node as well pushed into the list of neighbours
 		}
