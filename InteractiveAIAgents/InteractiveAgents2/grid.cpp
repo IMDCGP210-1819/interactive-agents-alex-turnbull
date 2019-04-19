@@ -43,6 +43,9 @@ grid::grid(RenderWindow *window, int col)
 	startNode->nodeType = node::start;
 	currentNodesToCheck.push_back(startNode);
 
+	bankNode = &listOfNodes[356];
+	bankNode->nodeType = node::bank;
+
 	//call the function to assign neighbours for all nodes
 	assignNeighbours();
 }
@@ -153,7 +156,7 @@ void grid::breadthFirstCheckNode(node* currentNode)
 		currentNode->nodeType = node::checked;
 
 		//perform the check on the appropriate (not already checked or an obstacel) given neighbour to see if the goal has been reached
-		if (nextNode->nodeType != node::checked && nextNode->nodeType != node::obstacle)
+		if (nextNode->nodeType != node::checked && nextNode->nodeType != node::obstacle && nextNode->nodeType != node::invisWall)
 		{
 			//if the neighbour is the goal 
 			if (nextNode->nodeType == node::goal)

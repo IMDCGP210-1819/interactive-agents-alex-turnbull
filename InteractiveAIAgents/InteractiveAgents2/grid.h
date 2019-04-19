@@ -26,6 +26,8 @@ public:
 	node* startNode = nullptr;
 	node* targetNode = nullptr;
 
+	node* bankNode = nullptr;
+
 	bool PathSet = false;
 
 	void breadthFirst();

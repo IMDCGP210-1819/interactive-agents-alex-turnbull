@@ -16,6 +16,8 @@ public:
 		goal, //yellow
 		checked, //pink
 		obstacle, //black
+		invisWall,
+		bank,
 	};
 
 	nodeTypes nodeType;

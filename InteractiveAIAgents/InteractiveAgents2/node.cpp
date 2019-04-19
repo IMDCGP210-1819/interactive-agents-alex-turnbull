@@ -50,6 +50,14 @@ void node::update()
 		cellSprite.setPosition(this->posX, this->posY);
 		break;
 
+	case invisWall: cellRef.setFillColor(sf::Color(0, 0, 0, 75));
+		cellSprite.setTexture(blankTexture);
+		break;
+
+	case bank: cellRef.setFillColor(sf::Color(0, 255, 255, 75));
+		cellSprite.setTexture(blankTexture);
+		break;
+
 	default: cellRef.setFillColor(sf::Color::Green);
 		break;
 	}

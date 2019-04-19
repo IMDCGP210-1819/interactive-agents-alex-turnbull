@@ -62,7 +62,7 @@ int main()
 	activeGrid.listOfNodes[326 + 16 + 16].nodeType = node::obstacle;
 	activeGrid.listOfNodes[326 + 16 + 16 + 16].nodeType = node::obstacle;
 
-	/*activeGrid.listOfNodes[215].nodeType = node::obstacle;
+	activeGrid.listOfNodes[215].nodeType = node::obstacle;
 	activeGrid.listOfNodes[216].nodeType = node::obstacle;
 	activeGrid.listOfNodes[217].nodeType = node::obstacle;
 	activeGrid.listOfNodes[218].nodeType = node::obstacle;
@@ -76,7 +76,7 @@ int main()
 	activeGrid.listOfNodes[221+16 + 16 + 16 + 16].nodeType = node::obstacle;
 	activeGrid.listOfNodes[221+16 + 16 + 16 + 16 + 16].nodeType = node::obstacle;
 	activeGrid.listOfNodes[221+16 + 16 + 16 + 16 + 16 + 16].nodeType = node::obstacle;
-	activeGrid.listOfNodes[221+16 + 16 + 16 + 16 + 16 + 16 + 16].nodeType = node::obstacle;*/
+	activeGrid.listOfNodes[221+16 + 16 + 16 + 16 + 16 + 16 + 16].nodeType = node::obstacle;
 
 
 
