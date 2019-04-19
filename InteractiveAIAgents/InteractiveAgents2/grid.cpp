@@ -66,8 +66,10 @@ void grid::draw()
 	}
 }
 
+//reset the grid so that a new path can be generated
 void grid::resetValues()
 {
+	//loop thorugh each node and remove it's parent and reset it to an empty node where appropriate
 	for (size_t i = 0; i < listOfNodes.size(); i++)
 	{
 		listOfNodes[i].Parent = nullptr;
@@ -77,35 +79,45 @@ void grid::resetValues()
 		}
 	}
 
+	//clear the current nodes to check and assign the starting point to be the original target and push into to begin checking
 	currentNodesToCheck = std::vector<node*>();
 	startNode = targetNode;
 	currentNodesToCheck.push_back(startNode);
 
+
+	//generate a random node and check if it's valid for a target
 	getRandomTarget();
 	while(!nodeValid)
 	{
 		getRandomTarget();
 	}
 
+	//reset for new pathfinding
 	reachedGoal = false;
 	PathSet = false;
 }
 
+//generate a random number/node and set the target node if it's valid
 bool grid::getRandomTarget()
 {
+	//generate between 0 and 350, total grid size is 383 but nothing over node 350 will be valid so don't bother checking above
 	int randomInt = rand() % 350 + 1;
 
+
+	//check if the node with the randomly generated index is an obstacle for invisible wall node
 	if(listOfNodes[randomInt].nodeType == node::obstacle || listOfNodes[randomInt].nodeType == node::invisWall)
 	{
 		nodeValid = false;
 	}
 	else
 	{
+		//assign the target node as it's valid
 		targetNode = &listOfNodes[randomInt];
 		targetNode->nodeType = node::goal;
 		nodeValid = true;
 	}
 
+	//return the state of the node
 	return nodeValid;
 }
 

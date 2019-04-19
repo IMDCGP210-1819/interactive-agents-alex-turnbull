@@ -2,7 +2,7 @@
   InteractiveAgents.cpp
   grid.cpp
 d:\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\grid.cpp(61): warning C4018: '<': signed/unsigned mismatch
-d:\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\grid.cpp(115): warning C4018: '<': signed/unsigned mismatch
-d:\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\grid.cpp(117): warning C4018: '<': signed/unsigned mismatch
+d:\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\grid.cpp(128): warning C4018: '<': signed/unsigned mismatch
+d:\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\grid.cpp(130): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   InteractiveAgents2.vcxproj -> D:\GitHub\interactive-agents-alex-turnbull\InteractiveAIAgents\Debug\InteractiveAgents.exe
