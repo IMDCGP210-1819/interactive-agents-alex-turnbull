@@ -25,7 +25,112 @@ int main()
 
 	activeGrid.listOfNodes[300].nodeType = node::goal;
 
-	activeGrid.listOfNodes[95].nodeType = node::obstacle;
+	//first two columns
+	for (size_t i = 0; i <= 32; i++)
+	{
+		activeGrid.listOfNodes[i].nodeType = node::invisWall;
+	}
+
+	//top row
+	for (size_t i = 0; i <= 368; i+= 16)
+	{
+		activeGrid.listOfNodes[i].nodeType = node::invisWall;
+	}
+
+	//bottom row
+	for (size_t i = 15; i <= 383; i+= 16)
+	{
+		activeGrid.listOfNodes[i].nodeType = node::invisWall;
+	}
+
+	//col 2
+	activeGrid.listOfNodes[33].nodeType = node::invisWall;
+	activeGrid.listOfNodes[34].nodeType = node::invisWall;
+	activeGrid.listOfNodes[35].nodeType = node::invisWall;
+	activeGrid.listOfNodes[44].nodeType = node::invisWall;
+	activeGrid.listOfNodes[45].nodeType = node::invisWall;
+	activeGrid.listOfNodes[46].nodeType = node::invisWall;
+	activeGrid.listOfNodes[47].nodeType = node::invisWall;
+
+	//col 3
+	activeGrid.listOfNodes[49].nodeType = node::invisWall;
+	activeGrid.listOfNodes[50].nodeType = node::invisWall;
+	activeGrid.listOfNodes[61].nodeType = node::invisWall;
+	activeGrid.listOfNodes[62].nodeType = node::invisWall;
+
+	//col 4
+	activeGrid.listOfNodes[65].nodeType = node::invisWall;
+	activeGrid.listOfNodes[77].nodeType = node::invisWall;
+	activeGrid.listOfNodes[78].nodeType = node::invisWall;
+
+	//col 5
+	activeGrid.listOfNodes[81].nodeType = node::invisWall;
+	activeGrid.listOfNodes[93].nodeType = node::invisWall;
+	activeGrid.listOfNodes[94].nodeType = node::invisWall;
+
+	//col 6
+	activeGrid.listOfNodes[110].nodeType = node::invisWall;
+
+	//col 7
+	activeGrid.listOfNodes[126].nodeType = node::invisWall;
+
+	//col 8
+	activeGrid.listOfNodes[142].nodeType = node::invisWall;
+
+	//col 9
+	activeGrid.listOfNodes[158].nodeType = node::invisWall;
+
+	//col 10
+	activeGrid.listOfNodes[174].nodeType = node::invisWall;
+
+	//col 11
+	activeGrid.listOfNodes[190].nodeType = node::invisWall;
+
+	//col 12
+	activeGrid.listOfNodes[193].nodeType = node::invisWall;
+	activeGrid.listOfNodes[206].nodeType = node::invisWall;
+
+	//col 13
+	activeGrid.listOfNodes[222].nodeType = node::invisWall;
+
+	//col 14
+	activeGrid.listOfNodes[238].nodeType = node::invisWall;
+
+	//col 15
+	activeGrid.listOfNodes[254].nodeType = node::invisWall;
+
+	//col 16
+	activeGrid.listOfNodes[270].nodeType = node::invisWall;
+
+	//col 20
+	activeGrid.listOfNodes[321].nodeType = node::invisWall;
+	activeGrid.listOfNodes[323].nodeType = node::invisWall;
+
+	//col 21
+	activeGrid.listOfNodes[337].nodeType = node::invisWall;
+	activeGrid.listOfNodes[338].nodeType = node::invisWall;
+	activeGrid.listOfNodes[339].nodeType = node::invisWall;
+	activeGrid.listOfNodes[344].nodeType = node::invisWall;
+	activeGrid.listOfNodes[345].nodeType = node::invisWall;
+	activeGrid.listOfNodes[346].nodeType = node::invisWall;
+	activeGrid.listOfNodes[347].nodeType = node::invisWall;
+
+	//col 22
+	for (size_t i = 352; i <= 367; i++)
+	{
+		if (activeGrid.listOfNodes[i].nodeType != node::bank)
+		{
+			activeGrid.listOfNodes[i].nodeType = node::invisWall;
+		}
+	}
+
+	//col 23
+	for (size_t i = 368; i <= 383; i++)
+	{
+		activeGrid.listOfNodes[i].nodeType = node::invisWall;
+	}
+
+	/*activeGrid.listOfNodes[95].nodeType = node::obstacle;
 	activeGrid.listOfNodes[94].nodeType = node::obstacle;
 	activeGrid.listOfNodes[93].nodeType = node::obstacle;
 	activeGrid.listOfNodes[92].nodeType = node::obstacle;
@@ -76,7 +181,7 @@ int main()
 	activeGrid.listOfNodes[221+16 + 16 + 16 + 16].nodeType = node::obstacle;
 	activeGrid.listOfNodes[221+16 + 16 + 16 + 16 + 16].nodeType = node::obstacle;
 	activeGrid.listOfNodes[221+16 + 16 + 16 + 16 + 16 + 16].nodeType = node::obstacle;
-	activeGrid.listOfNodes[221+16 + 16 + 16 + 16 + 16 + 16 + 16].nodeType = node::obstacle;
+	activeGrid.listOfNodes[221+16 + 16 + 16 + 16 + 16 + 16 + 16].nodeType = node::obstacle;*/
 
 
 

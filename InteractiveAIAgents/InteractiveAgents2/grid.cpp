@@ -39,7 +39,7 @@ grid::grid(RenderWindow *window, int col)
 	}
 
 	//define an abituary starting node for the time being and push it into the nodes to check for the path algorithm
-	startNode = &listOfNodes[10];
+	startNode = &listOfNodes[58];
 	startNode->nodeType = node::start;
 	currentNodesToCheck.push_back(startNode);
 
