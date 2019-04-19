@@ -66,6 +66,27 @@ void grid::draw()
 	}
 }
 
+void grid::resetValues()
+{
+	for (size_t i = 0; i < listOfNodes.size(); i++)
+	{
+		listOfNodes[i].Parent = nullptr;
+		if(listOfNodes[i].nodeType == node::path || listOfNodes[i].nodeType == node::checked)
+		{
+			listOfNodes[i].nodeType = node::empty;
+		}
+	}
+
+	currentNodesToCheck = std::vector<node*>();
+	startNode = targetNode;
+	currentNodesToCheck.push_back(startNode);
+
+	targetNode = &listOfNodes[66];
+	targetNode->nodeType = node::goal;
+	reachedGoal = false;
+	PathSet = false;
+}
+
 //Loop through each node and find it's respective neighbours and assign them for pathfinding
 void grid::assignNeighbours()
 {
@@ -118,6 +139,8 @@ void grid::DrawPath(node* node)
 	else
 	{
 		PathSet = true;
+
+		resetValues();
 	}
 }
 

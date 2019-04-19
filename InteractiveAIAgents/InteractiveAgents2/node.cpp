@@ -27,7 +27,7 @@ void node::update()
 		cellSprite.setTexture(blankTexture);
 		break;
 
-	case start: cellRef.setFillColor(sf::Color(255, 0, 0, 0));
+	case start: cellRef.setFillColor(sf::Color(255, 0, 0, 255));
 		cellSprite.setTexture(blankTexture);
 		break;
 
@@ -41,7 +41,7 @@ void node::update()
 		cellSprite.setTexture(blankTexture);
 		break;
 
-	case checked: cellRef.setFillColor(sf::Color(110, 0, 114, 0));
+	case checked: cellRef.setFillColor(sf::Color(110, 0, 114, 100));
 		cellSprite.setTexture(blankTexture);
 		break;
 

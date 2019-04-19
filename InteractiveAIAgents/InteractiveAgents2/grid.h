@@ -17,7 +17,8 @@ public:
 	Color outlineColour = Color::Red;
 	float outlineThickness = 2.0f;
 
-	void draw();	
+	void draw();
+	void resetValues();
 
 	RenderWindow *currentWindow;
 
