@@ -81,10 +81,31 @@ void grid::resetValues()
 	startNode = targetNode;
 	currentNodesToCheck.push_back(startNode);
 
-	targetNode = &listOfNodes[66];
-	targetNode->nodeType = node::goal;
+	getRandomTarget();
+	while(!isGood)
+	{
+		getRandomTarget();
+	}
+
 	reachedGoal = false;
 	PathSet = false;
+}
+
+bool grid::getRandomTarget()
+{
+	int randomInt = rand() % 350 + 1;
+	if(listOfNodes[randomInt].nodeType == node::obstacle || listOfNodes[randomInt].nodeType == node::invisWall)
+	{
+		isGood = false;
+	}
+	else
+	{
+		targetNode = &listOfNodes[randomInt];
+		targetNode->nodeType = node::goal;
+		isGood = true;
+	}
+
+	return isGood;
 }
 
 //Loop through each node and find it's respective neighbours and assign them for pathfinding

@@ -4,6 +4,7 @@
 #include "node.h"
 #include <algorithm>
 #include <queue>
+#include <random>
 
 using namespace sf;
 
@@ -19,6 +20,7 @@ public:
 
 	void draw();
 	void resetValues();
+	bool getRandomTarget();
 
 	RenderWindow *currentWindow;
 
@@ -40,5 +42,6 @@ public:
 
 private:
 	void assignNeighbours();
+	bool isGood;
 };
 
