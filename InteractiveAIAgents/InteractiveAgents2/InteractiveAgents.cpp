@@ -25,6 +25,8 @@ int main()
 
 	activeGrid.listOfNodes[300].nodeType = node::goal;
 
+#pragma region invisibleWalls
+
 	//first two columns
 	for (size_t i = 0; i <= 32; i++)
 	{
@@ -129,6 +131,64 @@ int main()
 	{
 		activeGrid.listOfNodes[i].nodeType = node::invisWall;
 	}
+
+#pragma endregion
+
+#pragma region obstacles
+	activeGrid.listOfNodes[39].nodeType = node::obstacle;
+	activeGrid.listOfNodes[55].nodeType = node::obstacle;
+	activeGrid.listOfNodes[68].nodeType = node::obstacle;
+	activeGrid.listOfNodes[69].nodeType = node::obstacle;
+	activeGrid.listOfNodes[70].nodeType = node::obstacle;
+	activeGrid.listOfNodes[71].nodeType = node::obstacle;
+	activeGrid.listOfNodes[84].nodeType = node::obstacle;
+	activeGrid.listOfNodes[90].nodeType = node::obstacle;
+	activeGrid.listOfNodes[91].nodeType = node::obstacle;
+	activeGrid.listOfNodes[92].nodeType = node::obstacle;
+	activeGrid.listOfNodes[100].nodeType = node::obstacle;
+	activeGrid.listOfNodes[103].nodeType = node::obstacle;
+	activeGrid.listOfNodes[104].nodeType = node::obstacle;
+	activeGrid.listOfNodes[107].nodeType = node::obstacle;
+	activeGrid.listOfNodes[113].nodeType = node::obstacle;
+	activeGrid.listOfNodes[114].nodeType = node::obstacle;
+	activeGrid.listOfNodes[116].nodeType = node::obstacle;
+	activeGrid.listOfNodes[123].nodeType = node::obstacle;
+	activeGrid.listOfNodes[132].nodeType = node::obstacle;
+	activeGrid.listOfNodes[133].nodeType = node::obstacle;
+	activeGrid.listOfNodes[134].nodeType = node::obstacle;
+	activeGrid.listOfNodes[139].nodeType = node::obstacle;
+	activeGrid.listOfNodes[154].nodeType = node::obstacle;
+	activeGrid.listOfNodes[155].nodeType = node::obstacle;
+	activeGrid.listOfNodes[165].nodeType = node::obstacle;
+	activeGrid.listOfNodes[168].nodeType = node::obstacle;
+	activeGrid.listOfNodes[178].nodeType = node::obstacle;
+	activeGrid.listOfNodes[181].nodeType = node::obstacle;
+	activeGrid.listOfNodes[188].nodeType = node::obstacle;
+	activeGrid.listOfNodes[189].nodeType = node::obstacle;
+	activeGrid.listOfNodes[194].nodeType = node::obstacle;
+	activeGrid.listOfNodes[197].nodeType = node::obstacle;
+	activeGrid.listOfNodes[198].nodeType = node::obstacle;
+	activeGrid.listOfNodes[199].nodeType = node::obstacle;
+	activeGrid.listOfNodes[204].nodeType = node::obstacle;
+	activeGrid.listOfNodes[217].nodeType = node::obstacle;
+	activeGrid.listOfNodes[218].nodeType = node::obstacle;
+	activeGrid.listOfNodes[219].nodeType = node::obstacle;
+	activeGrid.listOfNodes[220].nodeType = node::obstacle;
+	activeGrid.listOfNodes[225].nodeType = node::obstacle;
+	activeGrid.listOfNodes[226].nodeType = node::obstacle;
+	activeGrid.listOfNodes[246].nodeType = node::obstacle;
+	activeGrid.listOfNodes[247].nodeType = node::obstacle;
+	activeGrid.listOfNodes[252].nodeType = node::obstacle;
+	activeGrid.listOfNodes[263].nodeType = node::obstacle;
+	activeGrid.listOfNodes[264].nodeType = node::obstacle;
+	activeGrid.listOfNodes[275].nodeType = node::obstacle;
+	activeGrid.listOfNodes[283].nodeType = node::obstacle;
+	activeGrid.listOfNodes[290].nodeType = node::obstacle;
+	activeGrid.listOfNodes[291].nodeType = node::obstacle;
+	activeGrid.listOfNodes[299].nodeType = node::obstacle;
+	activeGrid.listOfNodes[315].nodeType = node::obstacle;
+
+#pragma endregion
 
 	/*activeGrid.listOfNodes[95].nodeType = node::obstacle;
 	activeGrid.listOfNodes[94].nodeType = node::obstacle;
