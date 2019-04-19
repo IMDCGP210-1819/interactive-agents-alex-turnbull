@@ -42,6 +42,6 @@ public:
 
 private:
 	void assignNeighbours();
-	bool isGood;
+	bool nodeValid;
 };
 
