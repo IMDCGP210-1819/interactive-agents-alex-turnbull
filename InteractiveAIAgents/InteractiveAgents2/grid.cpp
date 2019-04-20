@@ -95,6 +95,7 @@ void grid::resetValues()
 	//reset for new pathfinding
 	reachedGoal = false;
 	PathSet = false;
+	pathToTake = std::vector<node*>();
 }
 
 //generate a random number/node and set the target node if it's valid
@@ -165,6 +166,7 @@ void grid::DrawPath(node* node)
 {
 	//set the current node to the be of type path for the colour update
 	node->nodeType = node::path;
+	pathToTake.push_back(node);
 	if (node->Parent != nullptr)
 	{
 		//recurring function call going through the parent node of the given node until we reach the start node with a null parent
@@ -174,7 +176,7 @@ void grid::DrawPath(node* node)
 	{
 		PathSet = true;
 
-		resetValues();
+		//resetValues();
 	}
 }
 

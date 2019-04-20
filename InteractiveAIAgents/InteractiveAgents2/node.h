@@ -25,6 +25,8 @@ public:
 	float posX;
 	float posY;
 
+	sf::Vector2f getPosition() { return sf::Vector2f(posX, posY); };
+
 	int rowVal;
 	int colVal;
 

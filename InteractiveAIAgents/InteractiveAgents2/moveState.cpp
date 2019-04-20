@@ -20,9 +20,13 @@ void moveState::Enter()
 }
 
 void moveState::Run()
-{
+{	
 	sf::Time elapsed = currentEntity->internalClock.getElapsedTime();
 	std::cout << "Running Move State for: " << floorf(elapsed.asSeconds() * 100) / 100 << " seconds" << '\r';
+	if (currentEntity->currentGrid->PathSet)
+	{
+		currentEntity->targetNode = currentEntity->currentGrid->pathToTake[0];
+	}
 }
 
 void moveState::Exit()
@@ -34,7 +38,7 @@ BaseState * moveState::GetNewState()
 {
 	sf::Time elapsed = currentEntity->internalClock.getElapsedTime();
 
-	if (elapsed.asSeconds() > 5.0f)
+	if (currentEntity->atTarget)
 	{
 		return new digState(currentEntity);
 	}

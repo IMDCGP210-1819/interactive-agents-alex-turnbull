@@ -39,6 +39,7 @@ public:
 
 	bool reachedGoal = false;
 	std::vector<node*> currentNodesToCheck = std::vector<node*>();
+	std::vector<node*> pathToTake = std::vector<node*>();
 
 private:
 	void assignNeighbours();

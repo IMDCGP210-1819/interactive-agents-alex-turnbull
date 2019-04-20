@@ -3,7 +3,9 @@
 #include "digState.h"
 #include "bankState.h"
 #include "InteractiveEntity.h"
+#include "grid.h"
 
+class grid;
 class moveState :
 	public BaseState
 {
@@ -18,6 +20,8 @@ public:
 	BaseState* GetNewState();
 
 	InteractiveEntity* currentEntity;
+
+	grid* activeGrid;
 
 };
 

@@ -2,10 +2,12 @@
 #include <SFML/Graphics.hpp>
 
 class StateMachine;
+class node;
+class grid;
 class InteractiveEntity
 {
 public:
-	InteractiveEntity();
+	InteractiveEntity(grid* grid);
 	~InteractiveEntity();
 	
 	void think();
@@ -20,6 +22,9 @@ public:
 	int abituaryValue = 0;
 
 	bool atTarget = false;
+	node* targetNode;
+
+	grid* currentGrid;
 
 };
 
