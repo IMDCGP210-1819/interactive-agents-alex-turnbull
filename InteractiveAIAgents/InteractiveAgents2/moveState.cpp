@@ -17,6 +17,7 @@ void moveState::Enter()
 	std::cout << "-- Entered Move State --" << std::endl;
 	currentEntity->internalClock.restart();
 	currentEntity->entitySprite.setColor(sf::Color::Red);
+	currentEntity->atTarget = false;
 }
 
 void moveState::Run()
@@ -25,22 +26,22 @@ void moveState::Run()
 	std::cout << "Running Move State for: " << floorf(elapsed.asSeconds() * 100) / 100 << " seconds" << '\r';
 	if (currentEntity->currentGrid->PathSet)
 	{
-		if (currentEntity->currentGrid->pathToTake.size() != 1)
+		if (currentEntity->currentGrid->pathToTake.size() != 0)
 		{
 			currentEntity->targetNode = currentEntity->currentGrid->pathToTake.front();
 
 			float angle = atan2(currentEntity->entitySprite.getPosition().y - currentEntity->targetNode->getPosition().y, currentEntity->entitySprite.getPosition().x - currentEntity->targetNode->getPosition().x);
 			//sqrt(this.x*this.x + this.y*this.y);
-			angle = angle * 180 / (atan(1) * 4);
+			angle = angle * 180 / (atan(1) * 5);
 
 			Vector2f temp = currentEntity->entitySprite.getPosition() - currentEntity->targetNode->getPosition();
 			Vector2f direction = Vector2f(cos(angle), sin(angle));//Vector2f(temp);
 
-			currentEntity->entitySprite.setPosition(currentEntity->entitySprite.getPosition() + 1.0f * direction);
+			currentEntity->entitySprite.setPosition(currentEntity->entitySprite.getPosition() + currentEntity->moveSpeed * direction);// *elapsed.asSeconds());
 
 			float magnitude = sqrt(temp.x*temp.x + temp.y*temp.y);
-			std::cout << '\n' << magnitude << std::endl;
-			if (magnitude < 20)
+			//std::cout << '\n' << magnitude << std::endl;
+			if (magnitude < 10)
 			{
 				currentEntity->currentGrid->pathToTake.erase(currentEntity->currentGrid->pathToTake.begin());
 

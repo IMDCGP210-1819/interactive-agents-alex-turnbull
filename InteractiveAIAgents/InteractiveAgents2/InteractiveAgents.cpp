@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <iomanip>
 
 #include "InteractiveEntity.h"
 #include "grid.h"
@@ -191,13 +192,38 @@ int main()
 
 #pragma endregion
 
-	//window->setFramerateLimit(10);
+	//window->setFramerateLimit(120);
+	std::cout << std::setprecision(2) << std::fixed;
 
 	//std::cout << "Start Node: Row: " << activeGrid.startNode->rowVal << " Col: " << activeGrid.startNode->colVal << std::endl;
+
+
+	sf::Clock globalClock;
+	float lastTime = 0;
+
+	char c[10];
+	
+	sf::Font font;
+	if (!font.loadFromFile("arial.ttf"))
+	{
+		// error...
+	}
 
 	//main loop for the program
 	while (window->isOpen())
 	{
+		float currentTime = globalClock.restart().asSeconds();
+		float fps = 1.f / currentTime;
+		fps = floorf(fps);
+		int fpsInt = static_cast<int>(fps);
+
+		sf::Text text;
+		text.setFont(font);
+		text.setString(std::to_string(fpsInt));
+		text.setCharacterSize(24);
+		text.setFillColor(sf::Color::Red);
+		text.setStyle(sf::Text::Bold);
+
 		//event handler
 		sf::Event event;
 		while (window->pollEvent(event))
@@ -218,6 +244,7 @@ int main()
 		window->draw(backgroundS);		
 		activeGrid.draw();
 		window->draw(entity->GetSprite());
+		window->draw(text);
 
 		window->display();
 	}

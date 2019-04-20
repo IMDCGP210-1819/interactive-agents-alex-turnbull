@@ -37,6 +37,8 @@ BaseState * digState::GetNewState()
 	if (elapsed.asSeconds() > 2.0f)
 	{
 		currentEntity->abituaryValue += 1;
+		currentEntity->currentGrid->resetValues();
+
 		return new moveState(currentEntity);
 	}
 	return nullptr;

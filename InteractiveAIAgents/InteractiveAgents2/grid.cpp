@@ -175,6 +175,7 @@ void grid::DrawPath(node* node)
 	else
 	{
 		PathSet = true;
+		pathToTake.back()->nodeType = node::goal;
 		pathToTake.erase(pathToTake.begin());
 
 		//resetValues();

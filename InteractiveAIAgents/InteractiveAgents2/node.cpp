@@ -37,11 +37,11 @@ void node::update()
 		cellSprite.setPosition(this->posX, this->posY);
 		break;
 
-	case path: cellRef.setFillColor(sf::Color(145, 145, 145, 200));
+	case path: cellRef.setFillColor(sf::Color(145, 145, 145, 75));
 		cellSprite.setTexture(blankTexture);
 		break;
 
-	case checked: cellRef.setFillColor(sf::Color(110, 0, 114, 100));
+	case checked: cellRef.setFillColor(sf::Color(110, 0, 114, 75));
 		cellSprite.setTexture(blankTexture);
 		break;
 
