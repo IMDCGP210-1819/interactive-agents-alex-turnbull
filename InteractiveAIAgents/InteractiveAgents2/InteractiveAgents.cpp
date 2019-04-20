@@ -4,6 +4,7 @@
 
 #include "InteractiveEntity.h"
 #include "grid.h"
+#include "wanderEntity.h"
 
 using namespace sf;
 
@@ -13,6 +14,7 @@ int main()
 
 	grid activeGrid = grid(window, 10);
 	InteractiveEntity *entity = new InteractiveEntity(&activeGrid);
+	wanderEntity *wanderE = new wanderEntity(123, 677, 50);
 
 	sf::Sprite backgroundS;
 	sf::Texture backgoundT;
@@ -244,6 +246,10 @@ int main()
 		window->draw(backgroundS);		
 		activeGrid.draw();
 		window->draw(entity->GetSprite());
+
+		window->draw(wanderE->wanderCircle);
+		window->draw(wanderE->GetSprite());
+		
 		window->draw(text);
 
 		window->display();
