@@ -166,7 +166,7 @@ void grid::DrawPath(node* node)
 {
 	//set the current node to the be of type path for the colour update
 	node->nodeType = node::path;
-	pathToTake.push_back(node);
+	pathToTake.insert(pathToTake.begin(), node);
 	if (node->Parent != nullptr)
 	{
 		//recurring function call going through the parent node of the given node until we reach the start node with a null parent
@@ -175,6 +175,7 @@ void grid::DrawPath(node* node)
 	else
 	{
 		PathSet = true;
+		pathToTake.erase(pathToTake.begin());
 
 		//resetValues();
 	}

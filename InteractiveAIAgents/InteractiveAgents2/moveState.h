@@ -5,6 +5,8 @@
 #include "InteractiveEntity.h"
 #include "grid.h"
 
+#include <math.h>
+
 class grid;
 class moveState :
 	public BaseState

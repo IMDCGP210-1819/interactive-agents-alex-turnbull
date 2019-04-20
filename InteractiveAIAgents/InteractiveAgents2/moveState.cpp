@@ -25,7 +25,31 @@ void moveState::Run()
 	std::cout << "Running Move State for: " << floorf(elapsed.asSeconds() * 100) / 100 << " seconds" << '\r';
 	if (currentEntity->currentGrid->PathSet)
 	{
-		currentEntity->targetNode = currentEntity->currentGrid->pathToTake[0];
+		if (currentEntity->currentGrid->pathToTake.size() != 1)
+		{
+			currentEntity->targetNode = currentEntity->currentGrid->pathToTake.front();
+
+			float angle = atan2(currentEntity->entitySprite.getPosition().y - currentEntity->targetNode->getPosition().y, currentEntity->entitySprite.getPosition().x - currentEntity->targetNode->getPosition().x);
+			//sqrt(this.x*this.x + this.y*this.y);
+			angle = angle * 180 / (atan(1) * 4);
+
+			Vector2f temp = currentEntity->entitySprite.getPosition() - currentEntity->targetNode->getPosition();
+			Vector2f direction = Vector2f(cos(angle), sin(angle));//Vector2f(temp);
+
+			currentEntity->entitySprite.setPosition(currentEntity->entitySprite.getPosition() + 1.0f * direction);
+
+			float magnitude = sqrt(temp.x*temp.x + temp.y*temp.y);
+			std::cout << '\n' << magnitude << std::endl;
+			if (magnitude < 20)
+			{
+				currentEntity->currentGrid->pathToTake.erase(currentEntity->currentGrid->pathToTake.begin());
+
+			}
+		}
+		else
+		{
+			currentEntity->atTarget = true;
+		}		
 	}
 }
 

@@ -6,6 +6,8 @@
 #include "digState.h"
 #include "bankState.h"
 
+#include <math.h>
+
 class InteractiveEntity;
 class BaseState;
 class StateMachine

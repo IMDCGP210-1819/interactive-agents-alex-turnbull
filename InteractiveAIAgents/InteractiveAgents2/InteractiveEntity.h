@@ -13,6 +13,10 @@ public:
 	void think();
 	StateMachine *fsm;
 
+	sf::Vector2f velocity;
+	float moveSpeed = 20;
+
+
 	sf::Sprite entitySprite;
 	sf::Texture texture;
 	sf::Sprite GetSprite() { return entitySprite; }

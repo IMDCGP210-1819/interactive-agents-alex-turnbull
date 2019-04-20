@@ -191,7 +191,7 @@ int main()
 
 #pragma endregion
 
-	window->setFramerateLimit(10);
+	//window->setFramerateLimit(10);
 
 	//std::cout << "Start Node: Row: " << activeGrid.startNode->rowVal << " Col: " << activeGrid.startNode->colVal << std::endl;
 
