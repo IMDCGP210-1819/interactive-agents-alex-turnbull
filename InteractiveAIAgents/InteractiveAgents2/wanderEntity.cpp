@@ -7,7 +7,7 @@ wanderEntity::wanderEntity(float x, float y, float radius, InteractiveEntity *ot
 	posX = x;
 	posY = y;
 
-	rotation = 0;
+	rotation = -20;
 
 	entitySprite.setOrigin(20, 20);
 	entitySprite.setPosition(getPosition());
@@ -25,6 +25,7 @@ wanderEntity::wanderEntity(float x, float y, float radius, InteractiveEntity *ot
 
 	velocity = sf::Vector2f(cos(rotation * 3.14 / 180), sin(rotation * 3.14 / 180));
 	wanderCircle.setPosition(getPosition() + wanderDistance * velocity);
+
 }
 
 
@@ -34,14 +35,30 @@ wanderEntity::~wanderEntity()
 
 void wanderEntity::wander()
 {
-	auto randomPoint = wanderCircle.getTransform().transformPoint(wanderCircle.getPoint(rand() * 31));
+	sf::Time elapsed = internalClock.getElapsedTime();
 
+	auto randomPoint = wanderCircle.getTransform().transformPoint(wanderCircle.getPoint(rand() * 31));
+	float oldRotation = entitySprite.getRotation();
+
+	float targetRot = atan2(randomPoint.y - entitySprite.getPosition().y, randomPoint.x - entitySprite.getPosition().x) * (180/3.14);
+
+	float newRot = oldRotation + ((targetRot - oldRotation) * 1 * elapsed.asSeconds());
+
+	sf::Vector2f velocity2 = sf::Vector2f(cos(entitySprite.getRotation() * 3.14 / 180), sin(entitySprite.getRotation() * 3.14 / 180));
+	sf::Vector2f pos = entitySprite.getPosition() + (velocity2 * 50.0f) * elapsed.asSeconds();
+
+	entitySprite.setPosition(pos);
+	entitySprite.setRotation(targetRot);
+
+	velocity = sf::Vector2f(cos(entitySprite.getRotation() * 3.14 / 180), sin(entitySprite.getRotation() * 3.14 / 180));
+	wanderCircle.setPosition(entitySprite.getPosition() + wanderDistance * velocity);
 	testCircle.setRadius(5);
 	testCircle.setFillColor(sf::Color::Green);
 	testCircle.setOrigin(testCircle.getGlobalBounds().width / 2, testCircle.getGlobalBounds().height / 2);
 	testCircle.setPosition(randomPoint);
 
-	wanderTarget += sf::Vector2f(rand() % 3 + (-1) * wanderJitter, rand() % 3 + (-1) * wanderJitter);
+	//wanderTarget += sf::Vector2f(rand() % 3 + (-1) * wanderJitter, rand() % 3 + (-1) * wanderJitter);
+	internalClock.restart();
 }
 
 void wanderEntity::seek()

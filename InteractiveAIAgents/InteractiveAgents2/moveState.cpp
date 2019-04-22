@@ -17,7 +17,8 @@ void moveState::Enter()
 {
 	std::cout << "-- Entered Move State --" << std::endl;
 	currentEntity->internalClock.restart();
-	currentEntity->entitySprite.setColor(sf::Color::Red);
+	//currentEntity->entitySprite.setColor(sf::Color::Red);
+	currentEntity->entitySprite.setColor(sf::Color::White);
 	currentEntity->atTarget = false;
 }
 

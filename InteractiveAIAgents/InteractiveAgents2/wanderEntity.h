@@ -27,6 +27,8 @@ public:
 	sf::CircleShape wanderCircle;
 	sf::CircleShape testCircle;
 
+	sf::Clock internalClock;
+
 	sf::Vector2f velocity;
 
 	InteractiveEntity *pirateEntity;

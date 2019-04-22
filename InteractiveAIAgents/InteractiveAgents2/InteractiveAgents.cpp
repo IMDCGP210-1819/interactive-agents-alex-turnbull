@@ -14,7 +14,7 @@ int main()
 
 	grid activeGrid = grid(window, 10);
 	InteractiveEntity *entity = new InteractiveEntity(&activeGrid);
-	wanderEntity *wanderE = new wanderEntity(123, 677, 50, entity);
+	wanderEntity *wanderE = new wanderEntity(123, 677, 15, entity);
 
 	sf::Sprite backgroundS;
 	sf::Texture backgoundT;
@@ -196,7 +196,7 @@ int main()
 
 #pragma endregion
 
-	//window->setFramerateLimit(30);
+	window->setFramerateLimit(60);
 
 	//force floats to display in 2 decimal places within the console, just for visual consistancy
 	std::cout << std::setprecision(2) << std::fixed;
@@ -261,10 +261,10 @@ int main()
 
 		window->clear();		
 
-		activeGrid.breadthFirst();
-
-		entity->think();
-		wanderE->wander();
+		//control the various AI implementations
+		activeGrid.breadthFirst(); //Path Finding		
+		entity->think(); //Finite State Machine
+		wanderE->wander(); //Steering Behvaiours
 
 		//drawing of elements
 		window->draw(backgroundS);		
