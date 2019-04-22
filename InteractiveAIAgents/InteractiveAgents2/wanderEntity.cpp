@@ -33,36 +33,47 @@ wanderEntity::~wanderEntity()
 {
 }
 
-void wanderEntity::wander()
+void wanderEntity::act()
 {
-	sf::Time elapsed = internalClock.getElapsedTime();
+	elapsed = internalClock.getElapsedTime();
+	distanceFromPirate = sqrt((pirateEntity->entitySprite.getPosition().x - entitySprite.getPosition().x)*(pirateEntity->entitySprite.getPosition().x - entitySprite.getPosition().x) + (pirateEntity->entitySprite.getPosition().y - entitySprite.getPosition().y)*(pirateEntity->entitySprite.getPosition().y - entitySprite.getPosition().y));
+	if(distanceFromPirate < checkThreshold)
+	{
+		seek();
+	}else
+	{
+		wander();
+	}
+	internalClock.restart();
+}
 
+void wanderEntity::wander()	
+{
 	auto randomPoint = wanderCircle.getTransform().transformPoint(wanderCircle.getPoint(rand() * 31));
-	float oldRotation = entitySprite.getRotation();
 
 	float targetRot = atan2(randomPoint.y - entitySprite.getPosition().y, randomPoint.x - entitySprite.getPosition().x) * (180/3.14);
 
 	if (entitySprite.getPosition().x < windowLeftThreshold)
 	{
 		entitySprite.setPosition(windowLeftThreshold, entitySprite.getPosition().y);
-		targetRot -= 5;
+		targetRot -= rotationAdjustment;
 
 	}
 	else if (entitySprite.getPosition().x > windowRightThreshold)
 	{
 		entitySprite.setPosition(windowRightThreshold, entitySprite.getPosition().y);
-		targetRot -= 5;
+		targetRot -= rotationAdjustment;
 	}
 
 	if (entitySprite.getPosition().y < windowTopThreshold)
 	{
 		entitySprite.setPosition(entitySprite.getPosition().x, windowTopThreshold);
-		targetRot -= 5;
+		targetRot -= rotationAdjustment;
 	}
 	else if (entitySprite.getPosition().y > windowBottomThreshold)
 	{
 		entitySprite.setPosition(entitySprite.getPosition().x, windowBottomThreshold);
-		targetRot -= 5;
+		targetRot -= rotationAdjustment;
 	}
 
 	sf::Vector2f velocity2 = sf::Vector2f(cos(entitySprite.getRotation() * 3.14 / 180), sin(entitySprite.getRotation() * 3.14 / 180));
@@ -79,7 +90,6 @@ void wanderEntity::wander()
 	testCircle.setPosition(randomPoint);
 
 	//wanderTarget += sf::Vector2f(rand() % 3 + (-1) * wanderJitter, rand() % 3 + (-1) * wanderJitter);
-	internalClock.restart();
 }
 
 void wanderEntity::seek()

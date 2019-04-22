@@ -234,7 +234,7 @@ int main()
 	while (window->isOpen())
 	{
 		//update information section
-		pirateInfo.setString(std::to_string(entity->treasureCount));
+		pirateInfo.setString(std::to_string(wanderE->distanceFromPirate));
 		stateInfo.setString(entity->currentState);
 
 		float currentTime = globalClock.restart().asSeconds();
@@ -264,7 +264,7 @@ int main()
 		//control the various AI implementations
 		activeGrid.breadthFirst(); //Path Finding		
 		entity->think(); //Finite State Machine
-		wanderE->wander(); //Steering Behvaiours
+		wanderE->act(); //Steering Behvaiours
 
 		//drawing of elements
 		window->draw(backgroundS);		

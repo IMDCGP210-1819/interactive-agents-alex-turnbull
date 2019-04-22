@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <math.h>
+#include "InteractiveEntity.h"
 
 class InteractiveEntity;
 class wanderEntity
@@ -8,6 +9,8 @@ class wanderEntity
 public:
 	wanderEntity(float x, float y, float radius, InteractiveEntity *otherEntity);
 	~wanderEntity();
+
+	void act();
 
 	void wander();
 	void seek();
@@ -32,6 +35,7 @@ public:
 	sf::Vector2f velocity;
 
 	InteractiveEntity *pirateEntity;
+	float distanceFromPirate;
 
 private:
 	double wanderRadius;
@@ -43,5 +47,11 @@ private:
 	int windowRightThreshold = 1000;
 	int windowTopThreshold = 100;
 	int windowBottomThreshold = 700;
+
+	int rotationAdjustment = 5;
+
+	int checkThreshold = 150;
+		
+	sf::Time elapsed;
 };
 
