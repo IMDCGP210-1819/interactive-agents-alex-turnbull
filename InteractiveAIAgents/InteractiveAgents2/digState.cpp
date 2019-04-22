@@ -28,6 +28,7 @@ void digState::Run()
 
 void digState::Exit()
 {
+	std::cout << '\n' << "Successfully collected treasure";
 	std::cout << '\n' << "-- Left Dig State --" << std::endl << '\n';
 }
 

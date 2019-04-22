@@ -41,7 +41,7 @@ void wanderEntity::act()
 	distanceFromPirate = sqrt((pirateEntity->entitySprite.getPosition().x - entitySprite.getPosition().x)*(pirateEntity->entitySprite.getPosition().x - entitySprite.getPosition().x) + (pirateEntity->entitySprite.getPosition().y - entitySprite.getPosition().y)*(pirateEntity->entitySprite.getPosition().y - entitySprite.getPosition().y));
 	if(distanceFromPirate < checkThreshold)
 	{
-		seek();
+		pursue();
 	}else
 	{
 		wander();
@@ -99,8 +99,11 @@ void wanderEntity::wander()
 	//wanderTarget += sf::Vector2f(rand() % 3 + (-1) * wanderJitter, rand() % 3 + (-1) * wanderJitter);
 }
 
-//seeking steering behaviour - if close enough to pirate
-void wanderEntity::seek()
+//pursuing steering behaviour - if close enough to pirate
+void wanderEntity::pursue()
 {
-	currentBehaviour = "Seeking";
+	currentBehaviour = "Pursuing";
+	//when close enough perform pursuing steering
+	//hit the player and remove 1 treasure
+	//spawn/move pos randomly within reason
 }

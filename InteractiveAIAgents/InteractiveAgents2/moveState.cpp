@@ -59,6 +59,7 @@ void moveState::Run()
 
 void moveState::Exit()
 {
+	std::cout << '\n' << "Reached Target";
 	std::cout << '\n' << "-- Left Move State --" << std::endl << '\n';
 }
 

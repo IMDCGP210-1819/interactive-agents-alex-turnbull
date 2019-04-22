@@ -219,16 +219,23 @@ int main()
 	infoRect.setPosition(1205, 2.5);
 	infoRect.setFillColor(sf::Color(80, 80, 80, 200));
 
+	sf::Text title;
+	title.setFont(font);
+	title.setCharacterSize(32);
+	title.setFillColor(sf::Color::White);
+	title.setPosition(infoRect.getPosition() + sf::Vector2f(110, 10));
+	title.setString("Info:");
+
 	sf::Text pirateInfo;
 	pirateInfo.setFont(font);
 	pirateInfo.setCharacterSize(24);
 	pirateInfo.setFillColor(sf::Color::White);
 	//pirateInfo.setOrigin(pirateInfo.getGlobalBounds().width / 2, pirateInfo.getGlobalBounds().height/2);
-	pirateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(75, 50));
+	pirateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(75, 150));
 
 	sf::Text stateInfo;
 	stateInfo.setFont(font);
-	stateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(15, 10));
+	stateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(15, 110));
 	stateInfo.setCharacterSize(24);
 	stateInfo.setFillColor(sf::Color::White);
 
@@ -236,11 +243,11 @@ int main()
 	skeletonState.setFont(font);
 	skeletonState.setCharacterSize(18);
 	skeletonState.setFillColor(sf::Color::White);
-	skeletonState.setPosition(infoRect.getPosition() + sf::Vector2f(15, 700));
+	skeletonState.setPosition(infoRect.getPosition() + sf::Vector2f(15, 670));
 
 	sf::Text skeletonDist;
 	skeletonDist.setFont(font);
-	skeletonDist.setPosition(infoRect.getPosition() + sf::Vector2f(15, 750));
+	skeletonDist.setPosition(infoRect.getPosition() + sf::Vector2f(15, 720));
 	skeletonDist.setCharacterSize(18);
 	skeletonDist.setFillColor(sf::Color::White);
 
@@ -294,6 +301,7 @@ int main()
 		window->draw(text);
 
 		window->draw(infoRect);
+		window->draw(title);
 		window->draw(pirateInfo);
 		window->draw(stateInfo);
 		window->draw(skeletonState);

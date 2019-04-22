@@ -26,6 +26,7 @@ void bankState::Run()
 
 void bankState::Exit()
 {
+	std::cout << '\n' << "Successfully banked all treasure in hand";
 	std::cout << '\n' << "-- Left Bank State --" << std::endl << '\n';
 }
 

@@ -13,7 +13,7 @@ public:
 	void act();
 
 	void wander();
-	void seek();
+	void pursue();
 
 	float moveSpeed = 1;
 
