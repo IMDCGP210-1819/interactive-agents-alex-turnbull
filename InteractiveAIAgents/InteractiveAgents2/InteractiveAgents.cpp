@@ -14,7 +14,7 @@ int main()
 
 	grid activeGrid = grid(window, 10);
 	InteractiveEntity *entity = new InteractiveEntity(&activeGrid);
-	wanderEntity *wanderE = new wanderEntity(123, 677, 15, entity);
+	wanderEntity *wanderE = new wanderEntity(120, 200, 15, entity);
 
 	sf::Sprite backgroundS;
 	sf::Texture backgoundT;

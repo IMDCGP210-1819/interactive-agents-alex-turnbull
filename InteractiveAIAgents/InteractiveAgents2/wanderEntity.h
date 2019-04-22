@@ -35,8 +35,13 @@ public:
 
 private:
 	double wanderRadius;
-	float wanderDistance = 100.0f;
+	float wanderDistance = 200.0f;
 	double wanderJitter;
 	sf::Vector2f wanderTarget;
+
+	int windowLeftThreshold = 100;
+	int windowRightThreshold = 1000;
+	int windowTopThreshold = 100;
+	int windowBottomThreshold = 700;
 };
 

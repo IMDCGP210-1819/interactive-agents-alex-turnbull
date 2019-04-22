@@ -42,7 +42,28 @@ void wanderEntity::wander()
 
 	float targetRot = atan2(randomPoint.y - entitySprite.getPosition().y, randomPoint.x - entitySprite.getPosition().x) * (180/3.14);
 
-	float newRot = oldRotation + ((targetRot - oldRotation) * 1 * elapsed.asSeconds());
+	if (entitySprite.getPosition().x < windowLeftThreshold)
+	{
+		entitySprite.setPosition(windowLeftThreshold, entitySprite.getPosition().y);
+		targetRot -= 5;
+
+	}
+	else if (entitySprite.getPosition().x > windowRightThreshold)
+	{
+		entitySprite.setPosition(windowRightThreshold, entitySprite.getPosition().y);
+		targetRot -= 5;
+	}
+
+	if (entitySprite.getPosition().y < windowTopThreshold)
+	{
+		entitySprite.setPosition(entitySprite.getPosition().x, windowTopThreshold);
+		targetRot -= 5;
+	}
+	else if (entitySprite.getPosition().y > windowBottomThreshold)
+	{
+		entitySprite.setPosition(entitySprite.getPosition().x, windowBottomThreshold);
+		targetRot -= 5;
+	}
 
 	sf::Vector2f velocity2 = sf::Vector2f(cos(entitySprite.getRotation() * 3.14 / 180), sin(entitySprite.getRotation() * 3.14 / 180));
 	sf::Vector2f pos = entitySprite.getPosition() + (velocity2 * 50.0f) * elapsed.asSeconds();
