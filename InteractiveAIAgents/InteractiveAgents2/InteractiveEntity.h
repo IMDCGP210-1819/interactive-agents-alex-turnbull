@@ -14,7 +14,7 @@ public:
 	StateMachine *fsm;
 
 	sf::Vector2f velocity;
-	float moveSpeed = 1;
+	float moveSpeed = 40;
 
 
 	sf::Sprite entitySprite;

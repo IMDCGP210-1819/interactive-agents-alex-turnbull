@@ -14,7 +14,7 @@ int main()
 
 	grid activeGrid = grid(window, 10);
 	InteractiveEntity *entity = new InteractiveEntity(&activeGrid);
-	wanderEntity *wanderE = new wanderEntity(123, 677, 50);
+	wanderEntity *wanderE = new wanderEntity(123, 677, 50, entity);
 
 	sf::Sprite backgroundS;
 	sf::Texture backgoundT;
@@ -29,6 +29,7 @@ int main()
 
 	activeGrid.listOfNodes[300].nodeType = node::goal;
 
+	//Poorly predefined nodes for the obstacles and invisible walls around the island
 #pragma region invisibleWalls
 
 	//first two columns
@@ -194,21 +195,20 @@ int main()
 
 #pragma endregion
 
-	//window->setFramerateLimit(120);
+	//window->setFramerateLimit(30);
+
+	//force floats to display in 2 decimal places within the console, just for visual consistancy
 	std::cout << std::setprecision(2) << std::fixed;
 
 	//std::cout << "Start Node: Row: " << activeGrid.startNode->rowVal << " Col: " << activeGrid.startNode->colVal << std::endl;
 
-
 	sf::Clock globalClock;
 	float lastTime = 0;
-
-	char c[10];
 	
+	//load a font for printing text through SFML on the window
 	sf::Font font;
 	if (!font.loadFromFile("arial.ttf"))
 	{
-		// error...
 	}
 
 	//main loop for the program
@@ -241,6 +241,7 @@ int main()
 		activeGrid.breadthFirst();
 
 		entity->think();
+		wanderE->wander();
 
 		//drawing of elements
 		window->draw(backgroundS);		
@@ -249,6 +250,7 @@ int main()
 
 		window->draw(wanderE->wanderCircle);
 		window->draw(wanderE->GetSprite());
+		window->draw(wanderE->testCircle);
 		
 		window->draw(text);
 

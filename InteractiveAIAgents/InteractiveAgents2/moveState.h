@@ -20,6 +20,7 @@ public:
 	void Exit();
 
 	BaseState* GetNewState();
+	sf::Clock DeltaClock;
 
 	InteractiveEntity* currentEntity;
 
