@@ -7,7 +7,7 @@ wanderEntity::wanderEntity(float x, float y, float radius, InteractiveEntity *ot
 	posX = x;
 	posY = y;
 
-	rotation = -60;
+	rotation = 0;
 
 	entitySprite.setOrigin(20, 20);
 	entitySprite.setPosition(getPosition());
@@ -36,7 +36,7 @@ void wanderEntity::wander()
 {
 	auto randomPoint = wanderCircle.getTransform().transformPoint(wanderCircle.getPoint(rand() * 31));
 
-	testCircle.setRadius(2);
+	testCircle.setRadius(5);
 	testCircle.setFillColor(sf::Color::Green);
 	testCircle.setOrigin(testCircle.getGlobalBounds().width / 2, testCircle.getGlobalBounds().height / 2);
 	testCircle.setPosition(randomPoint);

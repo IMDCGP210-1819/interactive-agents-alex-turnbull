@@ -23,5 +23,7 @@ public:
 	BaseState* currentState;
 	InteractiveEntity* interactiveEntity;
 
+	BaseState::States activeState;
+
 };
 

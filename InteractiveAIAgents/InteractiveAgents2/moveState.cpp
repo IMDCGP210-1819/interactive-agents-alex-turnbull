@@ -5,6 +5,7 @@
 moveState::moveState(InteractiveEntity* newEntity)
 {
 	currentEntity = newEntity;
+	BaseState::activeState = States::Moving;
 }
 
 
@@ -69,7 +70,7 @@ BaseState * moveState::GetNewState()
 		return new digState(currentEntity);
 	}
 
-	if(currentEntity->abituaryValue >= 5)
+	if(currentEntity->treasureCount >= 5)
 	{
 		return new bankState(currentEntity);
 	}

@@ -4,6 +4,7 @@
 class StateMachine;
 class node;
 class grid;
+class BaseState;
 class InteractiveEntity
 {
 public:
@@ -16,19 +17,20 @@ public:
 	sf::Vector2f velocity;
 	float moveSpeed = 40;
 
-
 	sf::Sprite entitySprite;
 	sf::Texture texture;
 	sf::Sprite GetSprite() { return entitySprite; }
 
 	sf::Clock internalClock;
 
-	int abituaryValue = 0;
+	int treasureCount = 0;
 
 	bool atTarget = false;
 	node* targetNode;
 
 	grid* currentGrid;
+
+	std::string currentState;
 
 };
 

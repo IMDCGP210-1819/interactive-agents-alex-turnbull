@@ -5,6 +5,7 @@
 digState::digState(InteractiveEntity* newEntity)
 {
 	currentEntity = newEntity;
+	BaseState::activeState = States::Digging;
 }
 
 
@@ -36,7 +37,7 @@ BaseState * digState::GetNewState()
 
 	if (elapsed.asSeconds() > 2.0f)
 	{
-		currentEntity->abituaryValue += 1;
+		currentEntity->treasureCount += 1;
 		currentEntity->currentGrid->resetValues();
 
 		return new moveState(currentEntity);

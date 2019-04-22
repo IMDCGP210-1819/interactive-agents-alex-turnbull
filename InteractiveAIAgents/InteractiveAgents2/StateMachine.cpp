@@ -16,6 +16,7 @@ StateMachine::~StateMachine()
 
 void StateMachine::Update()
 {
+	activeState = currentState->activeState;
 	currentState->Run();
 	ChangeState(currentState->GetNewState());
 }

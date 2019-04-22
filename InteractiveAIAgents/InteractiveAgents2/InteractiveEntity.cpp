@@ -20,5 +20,20 @@ InteractiveEntity::~InteractiveEntity()
 
 void InteractiveEntity::think()
 {
+	switch (fsm->activeState)
+	{
+	case BaseState::Moving: 
+		currentState = "Moving";
+		break;
+
+	case BaseState::Digging:
+		currentState = "Digging";
+		break;
+
+	case BaseState::Banking:
+		currentState = "Banking";
+		break;
+	}
+
 	fsm->Update();
 }

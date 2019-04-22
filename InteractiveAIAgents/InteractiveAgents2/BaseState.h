@@ -13,5 +13,14 @@ public:
 	virtual void Run() = 0;
 	virtual void Exit() = 0;
 
+	enum States
+	{
+		Moving,
+		Digging,
+		Banking
+	};
+
+	States activeState;
+
 	virtual BaseState* GetNewState() = 0;
 };

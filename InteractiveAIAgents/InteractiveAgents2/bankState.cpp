@@ -3,6 +3,7 @@
 bankState::bankState(InteractiveEntity* newEntity)
 {
 	currentEntity = newEntity;
+	BaseState::activeState = States::Banking;
 }
 
 
@@ -34,7 +35,7 @@ BaseState * bankState::GetNewState()
 
 	if (elapsed.asSeconds() > 3.0f)
 	{
-		currentEntity->abituaryValue = 0;
+		currentEntity->treasureCount = 0;
 		return new moveState(currentEntity);
 	}
 	return nullptr;

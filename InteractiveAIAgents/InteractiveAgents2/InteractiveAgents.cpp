@@ -3,14 +3,14 @@
 #include <iomanip>
 
 #include "InteractiveEntity.h"
-#include "grid.h"
 #include "wanderEntity.h"
+#include "grid.h"
 
 using namespace sf;
 
 int main()
 {
-	RenderWindow *window = new RenderWindow(VideoMode(1205, 805), "Scoop");
+	RenderWindow *window = new RenderWindow(VideoMode(1507.5, 805), "Scoop");
 
 	grid activeGrid = grid(window, 10);
 	InteractiveEntity *entity = new InteractiveEntity(&activeGrid);
@@ -20,6 +20,7 @@ int main()
 	sf::Texture backgoundT;
 	backgoundT.loadFromFile("Assets\\island2.png");
 	backgroundS.setTexture(backgoundT);
+	backgroundS.setPosition(2.5, 2.5);
 
 	
 	//activeGrid.startNode = &activeGrid.listOfNodes[10];
@@ -211,9 +212,31 @@ int main()
 	{
 	}
 
+	//Handling information section
+	sf::RectangleShape infoRect;
+	infoRect.setSize(sf::Vector2f(300, 800));
+	infoRect.setPosition(1205, 2.5);
+	infoRect.setFillColor(sf::Color(80, 80, 80, 200));
+
+	sf::Text pirateInfo;
+	pirateInfo.setFont(font);
+	pirateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(150,50));
+	pirateInfo.setCharacterSize(24);
+	pirateInfo.setFillColor(sf::Color::White);
+
+	sf::Text stateInfo;
+	stateInfo.setFont(font);
+	stateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(100, 10));
+	stateInfo.setCharacterSize(24);
+	stateInfo.setFillColor(sf::Color::White);
+
 	//main loop for the program
 	while (window->isOpen())
 	{
+		//update information section
+		pirateInfo.setString(std::to_string(entity->treasureCount));
+		stateInfo.setString(entity->currentState);
+
 		float currentTime = globalClock.restart().asSeconds();
 		float fps = 1.f / currentTime;
 		fps = floorf(fps);
@@ -253,6 +276,10 @@ int main()
 		window->draw(wanderE->testCircle);
 		
 		window->draw(text);
+
+		window->draw(infoRect);
+		window->draw(pirateInfo);
+		window->draw(stateInfo);
 
 		window->display();
 	}
