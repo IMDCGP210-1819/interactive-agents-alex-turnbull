@@ -21,6 +21,8 @@ public:
 	float posY;
 	sf::Vector2f getPosition() { return sf::Vector2f(posX, posY); }
 
+	std::string currentBehaviour;
+
 	float rotation;
 
 	sf::Sprite entitySprite;

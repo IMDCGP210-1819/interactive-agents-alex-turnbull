@@ -210,6 +210,7 @@ int main()
 	sf::Font font;
 	if (!font.loadFromFile("arial.ttf"))
 	{
+		std::cout << "Error loading font" << std::endl;
 	}
 
 	//Handling information section
@@ -220,22 +221,37 @@ int main()
 
 	sf::Text pirateInfo;
 	pirateInfo.setFont(font);
-	pirateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(150,50));
 	pirateInfo.setCharacterSize(24);
 	pirateInfo.setFillColor(sf::Color::White);
+	//pirateInfo.setOrigin(pirateInfo.getGlobalBounds().width / 2, pirateInfo.getGlobalBounds().height/2);
+	pirateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(75, 50));
 
 	sf::Text stateInfo;
 	stateInfo.setFont(font);
-	stateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(100, 10));
+	stateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(15, 10));
 	stateInfo.setCharacterSize(24);
 	stateInfo.setFillColor(sf::Color::White);
+
+	sf::Text skeletonState;
+	skeletonState.setFont(font);
+	skeletonState.setCharacterSize(18);
+	skeletonState.setFillColor(sf::Color::White);
+	skeletonState.setPosition(infoRect.getPosition() + sf::Vector2f(15, 700));
+
+	sf::Text skeletonDist;
+	skeletonDist.setFont(font);
+	skeletonDist.setPosition(infoRect.getPosition() + sf::Vector2f(15, 750));
+	skeletonDist.setCharacterSize(18);
+	skeletonDist.setFillColor(sf::Color::White);
 
 	//main loop for the program
 	while (window->isOpen())
 	{
 		//update information section
-		pirateInfo.setString(std::to_string(wanderE->distanceFromPirate));
-		stateInfo.setString(entity->currentState);
+		stateInfo.setString("Pirate in State: " + entity->currentState);
+		pirateInfo.setString("Treasures: " + std::to_string(entity->treasureCount));		
+		skeletonState.setString("Skeleton Behaviour: " + wanderE->currentBehaviour);
+		skeletonDist.setString("Distance to Pirate: " + std::to_string(wanderE->distanceFromPirate));
 
 		float currentTime = globalClock.restart().asSeconds();
 		float fps = 1.f / currentTime;
@@ -280,6 +296,8 @@ int main()
 		window->draw(infoRect);
 		window->draw(pirateInfo);
 		window->draw(stateInfo);
+		window->draw(skeletonState);
+		window->draw(skeletonDist);
 
 		window->display();
 	}

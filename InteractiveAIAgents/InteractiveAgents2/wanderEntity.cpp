@@ -33,9 +33,11 @@ wanderEntity::~wanderEntity()
 {
 }
 
+//called every tick
 void wanderEntity::act()
 {
 	elapsed = internalClock.getElapsedTime();
+	//checks if if's close enough to the pirate entity given a threshold and chooses the correct steering behaviour as appropriate
 	distanceFromPirate = sqrt((pirateEntity->entitySprite.getPosition().x - entitySprite.getPosition().x)*(pirateEntity->entitySprite.getPosition().x - entitySprite.getPosition().x) + (pirateEntity->entitySprite.getPosition().y - entitySprite.getPosition().y)*(pirateEntity->entitySprite.getPosition().y - entitySprite.getPosition().y));
 	if(distanceFromPirate < checkThreshold)
 	{
@@ -47,12 +49,16 @@ void wanderEntity::act()
 	internalClock.restart();
 }
 
+//wandering steering behaviour - if not in range of pirate
 void wanderEntity::wander()	
 {
+	currentBehaviour = "Wandering";
+	//generate a random point on the circumference of the wandering circle attached to the entity
 	auto randomPoint = wanderCircle.getTransform().transformPoint(wanderCircle.getPoint(rand() * 31));
 
 	float targetRot = atan2(randomPoint.y - entitySprite.getPosition().y, randomPoint.x - entitySprite.getPosition().x) * (180/3.14);
 
+	//Constrain to the screen with extra threshold, add rotation if hitting the edges
 	if (entitySprite.getPosition().x < windowLeftThreshold)
 	{
 		entitySprite.setPosition(windowLeftThreshold, entitySprite.getPosition().y);
@@ -76,8 +82,9 @@ void wanderEntity::wander()
 		targetRot -= rotationAdjustment;
 	}
 
-	sf::Vector2f velocity2 = sf::Vector2f(cos(entitySprite.getRotation() * 3.14 / 180), sin(entitySprite.getRotation() * 3.14 / 180));
-	sf::Vector2f pos = entitySprite.getPosition() + (velocity2 * 50.0f) * elapsed.asSeconds();
+	//
+	sf::Vector2f direction = sf::Vector2f(cos(entitySprite.getRotation() * 3.14 / 180), sin(entitySprite.getRotation() * 3.14 / 180));
+	sf::Vector2f pos = entitySprite.getPosition() + (direction * 50.0f) * elapsed.asSeconds();
 
 	entitySprite.setPosition(pos);
 	entitySprite.setRotation(targetRot);
@@ -92,6 +99,8 @@ void wanderEntity::wander()
 	//wanderTarget += sf::Vector2f(rand() % 3 + (-1) * wanderJitter, rand() % 3 + (-1) * wanderJitter);
 }
 
+//seeking steering behaviour - if close enough to pirate
 void wanderEntity::seek()
 {
+	currentBehaviour = "Seeking";
 }
