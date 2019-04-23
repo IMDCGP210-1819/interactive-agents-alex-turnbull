@@ -41,6 +41,7 @@ void moveState::Run()
 			Vector2f direction = Vector2f(cos(angle), sin(angle));
 
 			currentEntity->entitySprite.setPosition(currentEntity->entitySprite.getPosition() + currentEntity->moveSpeed * direction * dt.asSeconds());
+			currentEntity->velocity = direction;
 
 			float magnitude = sqrt(temp.x*temp.x + temp.y*temp.y);
 			//std::cout << '\n' << magnitude << std::endl;

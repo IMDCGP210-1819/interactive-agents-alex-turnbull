@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <math.h>
 #include "InteractiveEntity.h"
+#include <iostream>
 
 class InteractiveEntity;
 class wanderEntity
@@ -14,6 +15,7 @@ public:
 
 	void wander();
 	void pursue();
+	void handlePirateAttack();
 
 	float moveSpeed = 1;
 
@@ -36,6 +38,8 @@ public:
 
 	sf::Vector2f velocity;
 
+	sf::CircleShape testLol;
+
 	InteractiveEntity *pirateEntity;
 	float distanceFromPirate;
 
@@ -52,7 +56,7 @@ private:
 
 	int rotationAdjustment = 5;
 
-	int checkThreshold = 150;
+	int checkThreshold = 200;
 		
 	sf::Time elapsed;
 };

@@ -103,7 +103,46 @@ void wanderEntity::wander()
 void wanderEntity::pursue()
 {
 	currentBehaviour = "Pursuing";
-	//when close enough perform pursuing steering
-	//hit the player and remove 1 treasure
-	//spawn/move pos randomly within reason
+	pirateEntity->velocity;
+
+	sf::Vector2f targetPos;	
+
+	targetPos = pirateEntity->GetSprite().getPosition() + (pirateEntity->velocity * 75.0f);
+	
+
+	testLol.setPosition(targetPos);
+	testLol.setOrigin(testLol.getGlobalBounds().width / 2, testLol.getGlobalBounds().height / 2);
+	testLol.setFillColor(sf::Color::Green);
+	testLol.setRadius(5.0f);
+
+	sf::Vector2f direction = sf::Vector2f(cos(entitySprite.getRotation() * 3.14 / 180), sin(entitySprite.getRotation() * 3.14 / 180));
+	sf::Vector2f pos = entitySprite.getPosition() + (direction * 50.0f) * elapsed.asSeconds();
+
+	if(distanceFromPirate < 75)
+	{
+		targetPos = pirateEntity->GetSprite().getPosition();
+	}
+
+	float targetRot = atan2(targetPos.y - entitySprite.getPosition().y, targetPos.x - entitySprite.getPosition().x) * (180 / 3.14);
+
+
+	entitySprite.setPosition(pos);
+	entitySprite.setRotation(targetRot);
+
+	if (distanceFromPirate < 10)
+	{
+		handlePirateAttack();
+	}
+}
+
+void wanderEntity::handlePirateAttack()
+{
+	if(!(pirateEntity->treasureCount <= 0))
+	{
+		pirateEntity->treasureCount -= 1;
+	}
+	int randX = rand() % 100 + 110;
+	int randY = rand() % 100 + 110;
+	
+	entitySprite.setPosition(randX,randY);
 }

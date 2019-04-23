@@ -307,6 +307,8 @@ int main()
 		window->draw(skeletonState);
 		window->draw(skeletonDist);
 
+		window->draw(wanderE->testLol);
+
 		window->display();
 	}
 	return 0;
