@@ -213,12 +213,12 @@ void grid::breadthFirst()
 //Perform the breadth first search for a given node
 void grid::breadthFirstCheckNode(node* currentNode)
 {	
+	//asign the current node as been checked
+	currentNode->nodeType = node::checked;
+
 	//looping through all neighbours of the node
 	for (node* nextNode : currentNode->neighbours)
-	{	
-		//asign the current node as been checked
-		currentNode->nodeType = node::checked;
-
+	{
 		//perform the check on the appropriate (not already checked or an obstacle) given neighbour to see if the goal has been reached
 		if (nextNode->nodeType != node::checked && nextNode->nodeType != node::obstacle && nextNode->nodeType != node::invisWall)
 		{
@@ -234,6 +234,9 @@ void grid::breadthFirstCheckNode(node* currentNode)
 			{
 				//keep track of the paths taken 
 				nextNode->Parent = currentNode;
+
+				//asign the current node in the loop as been checked
+				nextNode->nodeType = node::checked;
 
 				//check if the current neighbouring node is already in the list of check nodes otherwise add it so the breadth first function above can traverse it
 				bool alreadyInNextCheck = false;
@@ -279,12 +282,12 @@ void grid::astar()
 //perform the A* search for a given node
 void grid::astarCheckNode(node* checkNode)
 {
+	//set the current node as checked
+	checkNode->nodeType = node::checked;
+
 	//loop through each neighbour of the given node
 	for (size_t i = 0; i < checkNode->neighbours.size(); i++)
 	{
-		//set the current node as checked
-		checkNode->nodeType = node::checked;
-
 		//perform the check on the appropriate (not already checked or an obstacle) given neighbour to see if the goal has been reached
 		if (checkNode->neighbours[i]->nodeType != node::obstacle && checkNode->neighbours[i]->nodeType != node::start && checkNode->neighbours[i]->nodeType != node::invisWall && checkNode->neighbours[i]->nodeType != node::checked)
 		{

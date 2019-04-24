@@ -22,6 +22,14 @@ int main()
 	backgroundS.setTexture(backgoundT);
 	backgroundS.setPosition(2.5, 2.5);
 
+	enum pathfindingAlgorithms
+	{
+		aStar,
+		breadth
+	};
+
+	pathfindingAlgorithms currentAlgorithm = breadth;
+
 	
 	//activeGrid.startNode = &activeGrid.listOfNodes[10];
 
@@ -196,7 +204,7 @@ int main()
 
 #pragma endregion
 
-	//window->setFramerateLimit(60);
+	//window->setFramerateLimit(10);
 
 	//force floats to display in 2 decimal places within the console, just for visual consistancy
 	std::cout << std::setprecision(2) << std::fixed;
@@ -251,6 +259,12 @@ int main()
 	skeletonDist.setCharacterSize(18);
 	skeletonDist.setFillColor(sf::Color::White);
 
+	sf::Text algoText;
+	algoText.setFont(font);
+	algoText.setPosition(infoRect.getPosition() + sf::Vector2f(15, 400));
+	algoText.setCharacterSize(18);
+	algoText.setFillColor(sf::Color::White);
+
 	//main loop for the program
 	while (window->isOpen())
 	{
@@ -259,6 +273,7 @@ int main()
 		pirateInfo.setString("Treasures: " + std::to_string(entity->treasureCount));		
 		skeletonState.setString("Skeleton Behaviour: " + wanderE->currentBehaviour);
 		skeletonDist.setString("Distance to Pirate: " + std::to_string(wanderE->distanceFromPirate));
+		algoText.setString("Pathfinding Algo: " + std::to_string(currentAlgorithm));
 
 		float currentTime = globalClock.restart().asSeconds();
 		float fps = 1.f / currentTime;
@@ -280,12 +295,34 @@ int main()
 			{
 				window->close();
 			}
+
+			if(event.type == Event::KeyPressed)
+			{
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				{
+					currentAlgorithm = aStar;
+				}
+
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::B))
+				{
+					currentAlgorithm = breadth;
+				}
+			}
 		}
 
 		window->clear();		
 
 		//control the various AI implementations
-		activeGrid.astar(); //Path Finding		
+		//Path Finding
+		if(currentAlgorithm == breadth)
+		{
+			activeGrid.breadthFirst();
+		}
+		else if(currentAlgorithm == aStar)
+		{
+			activeGrid.astar();
+		}
+		 
 		entity->think(); //Finite State Machine
 		wanderE->act(); //Steering Behvaiours
 
@@ -306,6 +343,7 @@ int main()
 		window->draw(stateInfo);
 		window->draw(skeletonState);
 		window->draw(skeletonDist);
+		window->draw(algoText);
 
 		window->draw(wanderE->testLol);
 
