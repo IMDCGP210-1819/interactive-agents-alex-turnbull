@@ -219,7 +219,7 @@ void grid::breadthFirstCheckNode(node* currentNode)
 		//asign the current node as been checked
 		currentNode->nodeType = node::checked;
 
-		//perform the check on the appropriate (not already checked or an obstacel) given neighbour to see if the goal has been reached
+		//perform the check on the appropriate (not already checked or an obstacle) given neighbour to see if the goal has been reached
 		if (nextNode->nodeType != node::checked && nextNode->nodeType != node::obstacle && nextNode->nodeType != node::invisWall)
 		{
 			//if the neighbour is the goal 
@@ -255,59 +255,75 @@ void grid::breadthFirstCheckNode(node* currentNode)
 	}
 }
 
+//inital call to the A* algorithm
 void grid::astar()
 {
+	//check to see if the goal has been reached and draw the given path if so
 	if (reachedGoal && !PathSet)
 	{
 		DrawPath(targetNode);
 	}
 	else
 	{
+		//make a second check on the goal to stop infinite loops
 		if(!reachedGoal)
 		{
-			node* firstNode = priorityQueue.top();
+			//define the fist node to check (starting node) and start the pathfinding checking
+			node* nodeToCheck = priorityQueue.top();
 			priorityQueue.pop();
-			astarCheckNode(firstNode);		
+			astarCheckNode(nodeToCheck);
 		}		
 	}
 }
 
+//perform the A* search for a given node
 void grid::astarCheckNode(node* checkNode)
 {
+	//loop through each neighbour of the given node
 	for (size_t i = 0; i < checkNode->neighbours.size(); i++)
 	{
+		//set the current node as checked
 		checkNode->nodeType = node::checked;
 
-		if (checkNode->neighbours[i]->nodeType != node::obstacle && checkNode->neighbours[i]->nodeType != node::start)
+		//perform the check on the appropriate (not already checked or an obstacle) given neighbour to see if the goal has been reached
+		if (checkNode->neighbours[i]->nodeType != node::obstacle && checkNode->neighbours[i]->nodeType != node::start && checkNode->neighbours[i]->nodeType != node::invisWall && checkNode->neighbours[i]->nodeType != node::checked)
 		{
+			//get the neighbour and check if it's the goal we are looking for
 			node* Next = checkNode->neighbours[i];
-
 			if (Next->nodeType == node::goal)
 			{
-				//std::cout << "found Target" << std::endl;
+				//the goal has been found and assign it and it's parent for the path
 				targetNode = Next;
 				targetNode->Parent = checkNode;
 				reachedGoal = true;
 			}
+			//this node isn't the goal so handle appropriately
 			else
 			{
+				//calcuate the cost to travel down the path next path
 				int newCost = checkNode->costSoFar + Next->costToTraverse;
+				//see if it cheaper to travel down the given node
 				if (Next->costSoFar == 0 || newCost < Next->costSoFar)
 				{
+					//update the current cost of traversal
 					Next->costSoFar = newCost;
-					Next->priority = newCost + Heuristic(targetNode, Next); // the heuristic value is the distance between the node we are checking and the target. using this allows the program to be more efficient as it wont have to flood search
+					//calculate the priority by using the distance (heuristic) and the cost - A* algorithm uses both the actual distance from the start and the estimated distance to the goal
+					Next->priority = newCost + heuristic(targetNode, Next);
 
+					//set the parent for the path trackback
 					Next->Parent = checkNode;
 					Next->nodeType == node::checked;
+
+					//push the node into the queue for checking next tick of the A* function
 					priorityQueue.push(Next);
-					//std::cout << "Set a Node, setting cost to " << newCost << std::endl;
 				}
 			}
 		}
 	}
 }
 
-double grid::Heuristic(node* target, node* next)
+//calculate the distance from the target node 
+double grid::heuristic(node* target, node* next)
 {
 
 	return abs(target->getPosition().x - next->getPosition().x) + abs(target->getPosition().y - next->getPosition().y);

@@ -176,7 +176,7 @@ int main()
 	activeGrid.listOfNodes[198].nodeType = node::obstacle;
 	activeGrid.listOfNodes[199].nodeType = node::obstacle;
 	activeGrid.listOfNodes[204].nodeType = node::obstacle;
-	activeGrid.listOfNodes[217].nodeType = node::obstacle;
+	//activeGrid.listOfNodes[217].nodeType = node::obstacle;
 	activeGrid.listOfNodes[218].nodeType = node::obstacle;
 	activeGrid.listOfNodes[219].nodeType = node::obstacle;
 	activeGrid.listOfNodes[220].nodeType = node::obstacle;
@@ -196,7 +196,7 @@ int main()
 
 #pragma endregion
 
-	window->setFramerateLimit(60);
+	//window->setFramerateLimit(60);
 
 	//force floats to display in 2 decimal places within the console, just for visual consistancy
 	std::cout << std::setprecision(2) << std::fixed;

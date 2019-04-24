@@ -43,7 +43,7 @@ public:
 
 	void astar();
 	void astarCheckNode(node* checkNode);
-	double Heuristic(node* target, node* next);
+	double heuristic(node* target, node* next);
 
 	struct NodeCompare
 	{
