@@ -21,7 +21,7 @@ wanderEntity::wanderEntity(float x, float y, float radius, InteractiveEntity *ot
 	wanderCircle.setOrigin(wanderCircle.getGlobalBounds().width/2, wanderCircle.getGlobalBounds().height / 2);
 	wanderCircle.setFillColor(sf::Color::Transparent);
 	wanderCircle.setOutlineColor(sf::Color::Red);
-	wanderCircle.setOutlineThickness(3);	
+	wanderCircle.setOutlineThickness(3);
 
 	velocity = sf::Vector2f(cos(rotation * 3.14 / 180), sin(rotation * 3.14 / 180));
 	wanderCircle.setPosition(getPosition() + wanderDistance * velocity);

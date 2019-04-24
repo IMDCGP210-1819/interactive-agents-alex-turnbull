@@ -1,30 +1,7 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (InteractiveAgents2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  wanderEntity.cpp
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(26): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(59): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(76): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(86): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(92): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(118): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(126): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\wanderentity.cpp(149): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  grid.cpp
+c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\grid.cpp(63): warning C4018: '<': signed/unsigned mismatch
+c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\grid.cpp(132): warning C4018: '<': signed/unsigned mismatch
+c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\grid.cpp(134): warning C4018: '<': signed/unsigned mismatch
+c:\users\alext\documents\github\interactive-agents-alex-turnbull\interactiveaiagents\interactiveagents2\grid.cpp(301): warning C4553: '==': result of expression not used; did you intend '='?
   InteractiveAgents2.vcxproj -> C:\Users\alext\Documents\GitHub\interactive-agents-alex-turnbull\InteractiveAIAgents\Debug\InteractiveAgents.exe

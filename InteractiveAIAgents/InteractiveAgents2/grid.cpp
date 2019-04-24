@@ -43,6 +43,8 @@ grid::grid(RenderWindow *window, int col)
 	startNode->nodeType = node::start;
 	currentNodesToCheck.push_back(startNode);
 
+	priorityQueue.push(startNode);
+
 	bankNode = &listOfNodes[356];
 	bankNode->nodeType = node::bank;
 
@@ -84,7 +86,6 @@ void grid::resetValues()
 	startNode = targetNode;
 	currentNodesToCheck.push_back(startNode);
 
-
 	//generate a random node and check if it's valid for a target
 	getRandomTarget();
 	while(!nodeValid)
@@ -96,6 +97,8 @@ void grid::resetValues()
 	reachedGoal = false;
 	PathSet = false;
 	pathToTake = std::vector<node*>();
+	priorityQueue = std::priority_queue<node*, std::vector<node*>, NodeCompare>();
+	priorityQueue.push(startNode);
 }
 
 //generate a random number/node and set the target node if it's valid
@@ -161,7 +164,7 @@ void grid::assignNeighbours()
 	}	
 }
 
-//draw the path backwards from the goal to the start point by looking through all the parent node path from the goal nope
+//draw the path backwards from the goal to the start point by looking through all the parent node path from the goal node
 void grid::DrawPath(node* node)
 {
 	//set the current node to the be of type path for the colour update
@@ -250,4 +253,62 @@ void grid::breadthFirstCheckNode(node* currentNode)
 		}
 
 	}
+}
+
+void grid::astar()
+{
+	if (reachedGoal && !PathSet)
+	{
+		DrawPath(targetNode);
+	}
+	else
+	{
+		if(!reachedGoal)
+		{
+			node* firstNode = priorityQueue.top();
+			priorityQueue.pop();
+			astarCheckNode(firstNode);		
+		}		
+	}
+}
+
+void grid::astarCheckNode(node* checkNode)
+{
+	for (size_t i = 0; i < checkNode->neighbours.size(); i++)
+	{
+		checkNode->nodeType = node::checked;
+
+		if (checkNode->neighbours[i]->nodeType != node::obstacle && checkNode->neighbours[i]->nodeType != node::start)
+		{
+			node* Next = checkNode->neighbours[i];
+
+			if (Next->nodeType == node::goal)
+			{
+				//std::cout << "found Target" << std::endl;
+				targetNode = Next;
+				targetNode->Parent = checkNode;
+				reachedGoal = true;
+			}
+			else
+			{
+				int newCost = checkNode->costSoFar + Next->costToTraverse;
+				if (Next->costSoFar == 0 || newCost < Next->costSoFar)
+				{
+					Next->costSoFar = newCost;
+					Next->priority = newCost + Heuristic(targetNode, Next); // the heuristic value is the distance between the node we are checking and the target. using this allows the program to be more efficient as it wont have to flood search
+
+					Next->Parent = checkNode;
+					Next->nodeType == node::checked;
+					priorityQueue.push(Next);
+					//std::cout << "Set a Node, setting cost to " << newCost << std::endl;
+				}
+			}
+		}
+	}
+}
+
+double grid::Heuristic(node* target, node* next)
+{
+
+	return abs(target->getPosition().x - next->getPosition().x) + abs(target->getPosition().y - next->getPosition().y);
 }

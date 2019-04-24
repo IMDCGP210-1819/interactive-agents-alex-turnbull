@@ -29,7 +29,7 @@ int main()
 	//entity->entitySprite.setPosition(500, 500);
 
 	activeGrid.listOfNodes[300].nodeType = node::goal;
-
+	activeGrid.targetNode = &activeGrid.listOfNodes[300];
 	//Poorly predefined nodes for the obstacles and invisible walls around the island
 #pragma region invisibleWalls
 
@@ -285,7 +285,7 @@ int main()
 		window->clear();		
 
 		//control the various AI implementations
-		activeGrid.breadthFirst(); //Path Finding		
+		activeGrid.astar(); //Path Finding		
 		entity->think(); //Finite State Machine
 		wanderE->act(); //Steering Behvaiours
 

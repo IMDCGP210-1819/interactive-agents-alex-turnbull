@@ -16,8 +16,8 @@ public:
 		goal, //yellow
 		checked, //pink
 		obstacle, //black
-		invisWall,
-		bank,
+		invisWall, //black
+		bank, //yellow
 	};
 
 	nodeTypes nodeType;
@@ -31,6 +31,8 @@ public:
 	int colVal;
 
 	int costToTraverse = 1;
+	int costSoFar = 0;
+	double priority = 0;
 
 	node* Parent = nullptr;
 	node* Child = nullptr;

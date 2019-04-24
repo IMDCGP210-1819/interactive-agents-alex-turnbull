@@ -41,6 +41,20 @@ public:
 	std::vector<node*> currentNodesToCheck = std::vector<node*>();
 	std::vector<node*> pathToTake = std::vector<node*>();
 
+	void astar();
+	void astarCheckNode(node* checkNode);
+	double Heuristic(node* target, node* next);
+
+	struct NodeCompare
+	{
+		bool operator()(const node* firstNode, const node* secondNode) const
+		{
+			return firstNode->priority > secondNode->priority;
+		}
+	};
+
+	std::priority_queue<node*, std::vector<node*>, NodeCompare> priorityQueue;
+
 private:
 	void assignNeighbours();
 	bool nodeValid;
