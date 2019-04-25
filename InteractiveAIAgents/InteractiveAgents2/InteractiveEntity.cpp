@@ -3,8 +3,10 @@
 
 InteractiveEntity::InteractiveEntity(grid* grid)
 {
+	//create a new State Machine instance to control the entity
 	fsm = new StateMachine(this);
 
+	//define variables for the entity
 	std::string filename = "Assets\\pirateMan.png";
 	texture.loadFromFile(filename);
 	entitySprite.setOrigin(20, 20);
@@ -20,6 +22,8 @@ InteractiveEntity::~InteractiveEntity()
 
 void InteractiveEntity::think()
 {
+	//entity is controlled by the State Machine behind it
+	//Update the State for visual output to screen
 	switch (fsm->activeState)
 	{
 	case BaseState::Moving: 
@@ -35,5 +39,6 @@ void InteractiveEntity::think()
 		break;
 	}
 
+	//run the State Machine
 	fsm->Update();
 }

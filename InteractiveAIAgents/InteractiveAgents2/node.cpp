@@ -4,6 +4,7 @@
 
 node::node(sf::RectangleShape cellToRef)
 {
+	//define base variables and texures for the different node types
 	nodeType = empty;
 	cellRef = cellToRef;
 
@@ -20,7 +21,9 @@ node::~node()
 
 void node::update()
 {
-	
+	//visual guidance to determine what each type of node it is
+	//changes colour and gives a texture where appropriate
+	//happens every update
 	switch(nodeType)
 	{
 	case empty: cellRef.setFillColor(sf::Color(255,255,255,0));

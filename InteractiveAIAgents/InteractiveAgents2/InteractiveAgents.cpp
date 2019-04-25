@@ -10,18 +10,22 @@ using namespace sf;
 
 int main()
 {
+	//define SFML window
 	RenderWindow *window = new RenderWindow(VideoMode(1507.5, 805), "Scoop");
 
+	//create the grid and entities
 	grid activeGrid = grid(window, 10);
 	InteractiveEntity *entity = new InteractiveEntity(&activeGrid);
 	wanderEntity *wanderE = new wanderEntity(120, 200, 15, entity);
 
+	//load the background texure and apply it correctly
 	sf::Sprite backgroundS;
 	sf::Texture backgoundT;
 	backgoundT.loadFromFile("Assets\\island2.png");
 	backgroundS.setTexture(backgoundT);
 	backgroundS.setPosition(2.5, 2.5);
 
+	//define the pathfinding algorthms and pre-select one
 	enum pathfindingAlgorithms
 	{
 		aStar,
@@ -30,14 +34,14 @@ int main()
 
 	pathfindingAlgorithms currentAlgorithm = breadth;
 
-	
-	//activeGrid.startNode = &activeGrid.listOfNodes[10];
-
+	//place the Pirate entity at the start point on the grid
 	entity->entitySprite.setPosition(activeGrid.startNode->getPosition());
-	//entity->entitySprite.setPosition(500, 500);
 
+	//define the first target goal to find
 	activeGrid.listOfNodes[300].nodeType = node::goal;
 	activeGrid.targetNode = &activeGrid.listOfNodes[300];
+
+
 	//Poorly predefined nodes for the obstacles and invisible walls around the island
 #pragma region invisibleWalls
 
@@ -147,7 +151,6 @@ int main()
 	}
 
 #pragma endregion
-
 #pragma region obstacles
 	activeGrid.listOfNodes[39].nodeType = node::obstacle;
 	activeGrid.listOfNodes[55].nodeType = node::obstacle;
@@ -204,12 +207,12 @@ int main()
 
 #pragma endregion
 
+	//debugging to see the flow of the PathFinding
 	//window->setFramerateLimit(10);
 
 	//force floats to display in 2 decimal places within the console, just for visual consistancy
 	std::cout << std::setprecision(2) << std::fixed;
-
-	//std::cout << "Start Node: Row: " << activeGrid.startNode->rowVal << " Col: " << activeGrid.startNode->colVal << std::endl;
+	
 
 	sf::Clock globalClock;
 	float lastTime = 0;
@@ -221,7 +224,7 @@ int main()
 		std::cout << "Error loading font" << std::endl;
 	}
 
-	//Handling information section
+	//Handling information section, generating all required text element
 	sf::RectangleShape infoRect;
 	infoRect.setSize(sf::Vector2f(300, 800));
 	infoRect.setPosition(1205, 2.5);
@@ -267,7 +270,7 @@ int main()
 	//main loop for the program
 	while (window->isOpen())
 	{
-		//update information section
+		//update information text
 		stateInfo.setString("Pirate in State: " + entity->currentState);
 		pirateInfo.setString("Treasures: " + std::to_string(entity->treasureCount));		
 		skeletonState.setString("Skeleton Behaviour: " + wanderE->currentBehaviour);
@@ -303,6 +306,7 @@ int main()
 				window->close();
 			}
 
+			//keyboard handler, see if keyboard is pressed and change the current PathFinding Algorithm
 			if(event.type == Event::KeyPressed)
 			{
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -334,7 +338,9 @@ int main()
 		entity->think(); //Finite State Machine
 		wanderE->act(); //Steering Behvaiours
 
-		//drawing of elements
+		//-------------drawing of elements----------------
+		//Probably best idea to create a list of "Renderables" and loop though
+
 		window->draw(backgroundS);		
 		activeGrid.draw();
 		window->draw(entity->GetSprite());
@@ -345,6 +351,7 @@ int main()
 		
 		//window->draw(text);
 
+		//text drawing
 		window->draw(infoRect);
 		window->draw(title);
 		window->draw(pirateInfo);
@@ -353,7 +360,7 @@ int main()
 		window->draw(skeletonDist);
 		window->draw(algoText);
 
-		window->draw(wanderE->testLol);
+		//window->draw(wanderE->testLol);
 
 		window->display();
 	}

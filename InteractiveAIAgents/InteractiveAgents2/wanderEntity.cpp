@@ -2,21 +2,24 @@
 
 wanderEntity::wanderEntity(float x, float y, float radius, InteractiveEntity *otherEntity)
 {
+	//init variables/values
 	pirateEntity = otherEntity;
 
 	posX = x;
 	posY = y;
 
+	//positional and rotational setting
 	rotation = -20;
-
 	entitySprite.setOrigin(20, 20);
 	entitySprite.setPosition(getPosition());
 	entitySprite.setRotation(rotation);
 
+	//loading texture
 	std::string filename = "Assets\\skeleton.png";
 	texture.loadFromFile(filename);	
 	entitySprite.setTexture(texture);
 
+	//defining variables for the circle that the Wander steering behaviour will use
 	wanderCircle.setRadius(radius);
 	wanderCircle.setOrigin(wanderCircle.getGlobalBounds().width/2, wanderCircle.getGlobalBounds().height / 2);
 	wanderCircle.setFillColor(sf::Color::Transparent);
@@ -82,13 +85,14 @@ void wanderEntity::wander()
 		targetRot -= rotationAdjustment;
 	}
 
-	//
+	//define new position/directional vectors to follow and update accordingly
 	sf::Vector2f direction = sf::Vector2f(cos(entitySprite.getRotation() * 3.14 / 180), sin(entitySprite.getRotation() * 3.14 / 180));
 	sf::Vector2f pos = entitySprite.getPosition() + (direction * 50.0f) * elapsed.asSeconds();
 
 	entitySprite.setPosition(pos);
 	entitySprite.setRotation(targetRot);
 
+	//visual updating on the current point the Wander is following
 	velocity = sf::Vector2f(cos(entitySprite.getRotation() * 3.14 / 180), sin(entitySprite.getRotation() * 3.14 / 180));
 	wanderCircle.setPosition(entitySprite.getPosition() + wanderDistance * velocity);
 	testCircle.setRadius(5);
@@ -105,19 +109,21 @@ void wanderEntity::pursue()
 	currentBehaviour = "Pursuing";
 	pirateEntity->velocity;
 
-	sf::Vector2f targetPos;	
+	sf::Vector2f targetPos;
 
-	targetPos = pirateEntity->GetSprite().getPosition() + (pirateEntity->velocity * 75.0f);
-	
+	//find out the direction the Pirate is aiming and head for in front of it
+	targetPos = pirateEntity->GetSprite().getPosition() + (pirateEntity->velocity * 75.0f);	
 
-	testLol.setPosition(targetPos);
+	/*testLol.setPosition(targetPos);
 	testLol.setOrigin(testLol.getGlobalBounds().width / 2, testLol.getGlobalBounds().height / 2);
 	testLol.setFillColor(sf::Color::Green);
-	testLol.setRadius(5.0f);
+	testLol.setRadius(5.0f);*/
 
+	//calcuate directional and positional vector for updating
 	sf::Vector2f direction = sf::Vector2f(cos(entitySprite.getRotation() * 3.14 / 180), sin(entitySprite.getRotation() * 3.14 / 180));
 	sf::Vector2f pos = entitySprite.getPosition() + (direction * 50.0f) * elapsed.asSeconds();
 
+	//effectively seeking behaviour, when even more close to the Pirate, seek directly to it's current position
 	if(distanceFromPirate < 75)
 	{
 		targetPos = pirateEntity->GetSprite().getPosition();
@@ -125,22 +131,26 @@ void wanderEntity::pursue()
 
 	float targetRot = atan2(targetPos.y - entitySprite.getPosition().y, targetPos.x - entitySprite.getPosition().x) * (180 / 3.14);
 
-
+	//set the new position and rotation for the entity
 	entitySprite.setPosition(pos);
 	entitySprite.setRotation(targetRot);
 
+	//When close enough for attack, run the function
 	if (distanceFromPirate < 10)
 	{
 		handlePirateAttack();
 	}
 }
 
+//basic function to handle taking a treasure away from the pirate
 void wanderEntity::handlePirateAttack()
 {
 	if(!(pirateEntity->treasureCount <= 0))
 	{
 		pirateEntity->treasureCount -= 1;
 	}
+
+	//define new (slightly) randomised spawn point away from the Pirate
 	int randX = rand() % 100 + 110;
 	int randY = rand() % 100 + 110;
 	

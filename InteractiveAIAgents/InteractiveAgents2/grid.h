@@ -14,6 +14,7 @@ public:
 	grid(RenderWindow *window, int col);
 	~grid();
 
+	//define grid visual variables
 	float cellSizes = 50.0f;
 	Color outlineColour = Color::Red;
 	float outlineThickness = 2.0f;
@@ -33,6 +34,7 @@ public:
 
 	bool PathSet = false;
 
+	//functions reguarding the pathfinding
 	void breadthFirst();
 	void breadthFirstCheckNode(node* currentNode);
 	void DrawPath(node* node);
@@ -45,6 +47,7 @@ public:
 	void astarCheckNode(node* checkNode);
 	double heuristic(node* target, node* next);
 
+	//a struct to compare 2 nodes to see which priority is higher
 	struct NodeCompare
 	{
 		bool operator()(const node* firstNode, const node* secondNode) const
