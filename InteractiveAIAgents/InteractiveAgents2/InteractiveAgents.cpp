@@ -238,7 +238,6 @@ int main()
 	pirateInfo.setFont(font);
 	pirateInfo.setCharacterSize(24);
 	pirateInfo.setFillColor(sf::Color::White);
-	//pirateInfo.setOrigin(pirateInfo.getGlobalBounds().width / 2, pirateInfo.getGlobalBounds().height/2);
 	pirateInfo.setPosition(infoRect.getPosition() + sf::Vector2f(75, 150));
 
 	sf::Text stateInfo;
@@ -273,19 +272,27 @@ int main()
 		pirateInfo.setString("Treasures: " + std::to_string(entity->treasureCount));		
 		skeletonState.setString("Skeleton Behaviour: " + wanderE->currentBehaviour);
 		skeletonDist.setString("Distance to Pirate: " + std::to_string(wanderE->distanceFromPirate));
-		algoText.setString("Pathfinding Algo: " + std::to_string(currentAlgorithm));
+
+		if(currentAlgorithm == aStar)
+		{
+			algoText.setString("Pathfinding Algo: A Star");
+		}else
+		{
+			algoText.setString("Pathfinding Algo: Breadth First");
+		}
+		
 
 		float currentTime = globalClock.restart().asSeconds();
 		float fps = 1.f / currentTime;
 		fps = floorf(fps);
 		int fpsInt = static_cast<int>(fps);
 
-		sf::Text text;
+		/*sf::Text text;
 		text.setFont(font);
 		text.setString(std::to_string(fpsInt));
 		text.setCharacterSize(24);
 		text.setFillColor(sf::Color::Red);
-		text.setStyle(sf::Text::Bold);
+		text.setStyle(sf::Text::Bold);*/
 
 		//event handler
 		sf::Event event;
@@ -298,14 +305,15 @@ int main()
 
 			if(event.type == Event::KeyPressed)
 			{
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 				{
-					currentAlgorithm = aStar;
-				}
-
-				if(sf::Keyboard::isKeyPressed(sf::Keyboard::B))
-				{
-					currentAlgorithm = breadth;
+					if(currentAlgorithm == breadth)
+					{
+						currentAlgorithm = aStar;
+					}else
+					{
+						currentAlgorithm = breadth;
+					}					
 				}
 			}
 		}
@@ -335,7 +343,7 @@ int main()
 		window->draw(wanderE->GetSprite());
 		window->draw(wanderE->testCircle);
 		
-		window->draw(text);
+		//window->draw(text);
 
 		window->draw(infoRect);
 		window->draw(title);
